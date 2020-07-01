@@ -1,6 +1,6 @@
 <p align="center">
 <br/>
-<h3 align="center">mobeigi.com</h3>
+<h3 align="center">aminbeigi.com</h3>
 <p align="center">Source code for the aminbeigi.com website.</p>
 <h2></h2>
 </p>
