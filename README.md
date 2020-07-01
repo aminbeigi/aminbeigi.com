@@ -6,11 +6,6 @@
 </p>
 <br />
 
-<p align="center">
-<a href="../../issues"><img src="https://img.shields.io/github/issues/mobeigi/mobeigi.com.svg?style=flat-square" /></a>
-<a href="../../pulls"><img src="https://img.shields.io/github/issues-pr/mobeigi/mobeigi.com.svg?style=flat-square" /></a> 
-</p>
-
 ## Description
 Source code for the [aminbeigi.com](http://aminbeigi.com/) website.
 In its current state it is only created using HTML and CSS.  
