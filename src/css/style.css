@@ -1,12 +1,11 @@
 a {
     text-decoration: none;
-    color: #FFF;   
+    color: #fff;
 }
 
 a:hover {
     text-decoration: none;
-    color: #FFF
-    
+    color: #fff;
 }
 
 .exodia-container {
@@ -30,9 +29,9 @@ a:hover {
 }
 
 .box {
-    flex: 1 1 49%;
-    padding: 10px;
-    margin: 5px;
+    flex: 1 1 40%;
+    padding: 20px;
+    margin: 25px;
     background-color: #202020;
     border-radius: 7.5px;
     align-self: center;
@@ -44,14 +43,11 @@ a:hover {
 }
 
 .section_title {
-
+    font-size: 24px;
 }
 
 .about_section {
-
 }
 
 .bottom_section {
-
 }
-
