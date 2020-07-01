@@ -17,6 +17,9 @@ a:hover {
 
 .container-1 {
     position: fixed;
+    width: 30vw;
+    min-height: 100vh;
+    text-align: center;
 }
 
 .container-2 {
@@ -52,18 +55,20 @@ a:hover {
 }
 
 .bottom-section {
-    font-size: 20;
+    font-size: 15px;
 }
 
 #github-avatar {
-    background-image: url("https://avatars1.githubusercontent.com/u/39206588?s=460&v=4");
+    background: url(https://avatars3.githubusercontent.com/u/39206588?s=460&u=34894adba6753fe0d7473d5abef3fafeb286389d&v=4) center;
     background-repeat: no-repeat;
-    width: 420px;
+    max-width: 420px;
     height: 420px;
 }
 
 #username {
+    display: block;
+    font-size: 40px;
 }
-
-#about {
+#username a:hover {
+    text-decoration: underline;
 }
