@@ -2,7 +2,6 @@
 <br/>
 <h3 align="center">aminbeigi.com</h3>
 <p align="center">Source code for the aminbeigi.com website.</p>
-<h2></h2>
 </p>
 <br />
 
