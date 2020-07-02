@@ -67,8 +67,8 @@ a:hover {
 
 #github-avatar {
     background: url(https://avatars3.githubusercontent.com/u/39206588?s=460&u=34894ad…&v=4);
-    height: 420px;
-    max-width: 420px;
+    height: 300px;
+    max-width: 300px;
     background-size: cover;
     margin: 1em auto;
     overflow: hidden;
@@ -76,8 +76,9 @@ a:hover {
 
 #username {
     display: block;
-    font-size: 40px;
+    font-size: 52px;
     overflow: hidden;
+    margin-bottom: 0.25em;
 }
 #username a:hover {
     text-decoration: underline;
