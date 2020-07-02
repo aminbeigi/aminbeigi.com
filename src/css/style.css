@@ -24,7 +24,7 @@ a:hover {
 
 .container-2 {
     display: inline-flex;
-    background-color:brown;
+    background-color: brown;
     width: 70vw;
     padding: 20px;
     flex-wrap: wrap;
@@ -66,16 +66,18 @@ a:hover {
 }
 
 #github-avatar {
-    background: url(https://avatars3.githubusercontent.com/u/39206588?s=460&u=34894adba6753fe0d7473d5abef3fafeb286389d&v=4)
-        center;
-    background-repeat: no-repeat;
-    max-width: 420px;
+    background: url(https://avatars3.githubusercontent.com/u/39206588?s=460&u=34894ad…&v=4);
     height: 420px;
+    max-width: 420px;
+    background-size: cover;
+    margin: 1em auto;
+    overflow: hidden;
 }
 
 #username {
     display: block;
     font-size: 40px;
+    overflow: hidden;
 }
 #username a:hover {
     text-decoration: underline;
