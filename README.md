@@ -14,7 +14,7 @@
 
 ## Description
 Source code for the [aminbeigi.com](http://aminbeigi.com/) website.  
-In its current state it is a stateless app with no backend created using HTML and CSS.  
+In its current state it is a stateless app with no backend created using only HTML and CSS.  
 
 ## Contributions
 Contributions are always welcome!
