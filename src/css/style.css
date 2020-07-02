@@ -47,8 +47,8 @@ a:hover {
 }
 
 .box:hover {
-    transform: scale(1.025);
-    transition: transform 0.5s;
+    transform: scale(1.03);
+    transition: transform 0.35s;
 }
 
 .section-title {
@@ -78,20 +78,22 @@ a:hover {
     display: block;
     font-size: 52px;
     overflow: hidden;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.1em;
 }
 #username a:hover {
     text-decoration: underline;
 }
 
-.socials {
-    font-size: 32px;
-    border: brown solid;
-    border-width: 0.5px;
-    border-radius: 7.5px;
-    display: inline-block;
+#contact {
+    display: block;
+    font-size: 20px;
+    overflow: hidden;
 }
 
-.socials a{
+.socials {
+    font-size: 40px;
+}
+
+.socials a {
     margin: 1em;
 }
