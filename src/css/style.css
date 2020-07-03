@@ -97,4 +97,10 @@ a:hover {
 
 .socials a {
     margin: 1em;
+
+}
+
+.socials i:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
 }
