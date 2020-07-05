@@ -99,7 +99,10 @@ a:hover {
     margin: 1em;
 }
 
+.socials i {
+    color: grey;
+}
+
 .socials i:hover {
-    transform: scale(1.02);
-    transition: transform 0.25s;
+    color: #eeeeee;
 }
