@@ -32,9 +32,9 @@ a:hover {
 }
 
 #title {
+    font-weight: bold;
     flex-basis: 100%;
     font-size: 72px;
-    font-weight: bold;
 }
 
 .box {
@@ -44,12 +44,7 @@ a:hover {
     background-color: #202020;
     border-radius: 7.5px;
     align-self: center;
-}
-
-.box:hover {
-    transform: scale(1.025);
-    transition: 0.4s ease-in-out;
-}
+   }
 
 .section-title {
     font-size: 36px;
@@ -81,14 +76,15 @@ a:hover {
     overflow: hidden;
     margin-bottom: 0.1em;
 }
-#username a:hover {
-    text-decoration: underline;
-}
 
 #contact {
     display: block;
     font-size: 20px;
     overflow: hidden;
+}
+
+#contact h4 {
+    color: grey;
 }
 
 .socials {
