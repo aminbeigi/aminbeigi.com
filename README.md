@@ -17,7 +17,7 @@ Source code for the [aminbeigi.com](http://aminbeigi.com/) website.
 In its current state it is a stateless app with no backend created using HTML and CSS.  
 
 ## Contributions
-Contributions are always welcome!
+Contributions are always welcome!  
 Just make a [pull request](../../pulls).
 
 ## Licence
