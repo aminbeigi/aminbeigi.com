@@ -21,4 +21,4 @@ Contributions are always welcome!
 Just make a [pull request](../../pulls).
 
 ## Licence
-MIT license
+GNU General Public License v3.0
