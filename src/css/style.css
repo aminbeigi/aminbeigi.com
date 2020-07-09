@@ -39,20 +39,25 @@ a:hover {
 
 .box {
     flex: 1 1 45%;
-    padding: 20px;
+    padding: 25px;
     margin: 25px;
     background-color: #202020;
     border-radius: 7.5px;
     align-self: center;
-   }
+}
+
+.box:hover {
+    color: #202020;
+    background-color: #eeeeee;
+}
 
 .section-title {
-    font-size: 36px;
+    font-size: 48px;
     font-weight: bold;
 }
 
 .about-section {
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .bottom-section {
