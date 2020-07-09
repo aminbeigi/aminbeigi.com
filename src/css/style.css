@@ -39,29 +39,36 @@ a:hover {
 
 .box {
     flex: 1 1 45%;
-    padding: 25px;
+    padding: 20px;
     margin: 25px;
     background-color: #202020;
     border-radius: 7.5px;
     align-self: center;
 }
 
-.box:hover {
+.box:focus {
     color: #202020;
-    background-color: #eeeeee;
+    background-color: white;
+}
+.box a {
+    position: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
 }
 
 .section-title {
     font-size: 48px;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .about-section {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .bottom-section {
-    font-size: 15px;
+    font-size: 14px;
     font-style: italic;
 }
 
