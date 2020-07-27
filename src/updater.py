@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 
 """ Automatic upadater for index.html.
 
-This script will automatically update the title and description
-of index.html.
+This script will automatically update the title-section,
+about-section and bottom-section of index.html.
 """
 
 USERNAME = 'aminbeigi'
@@ -29,6 +29,18 @@ def update():
     for i, tag in enumerate(soup.find_all('div', {'class': 'about-section'})):
         tag.string.replace_with(data[i]['description'])
 
+    
+    # replace each 'bottom-section'
+    for i, tag in enumerate(soup.find_all('i', {'class': 'fas fa-code'})):
+        lang_API_url = data[i]['languages_url']
+        lang_response = browser.get(lang_API_url)
+        lang_data = json.loads(lang_response.text)
+
+        current_lst = []
+        for j in range(len(lang_data)):
+            current_lst.append(list(lang_data.keys())[j])
+        tag.string.replace_with(f"created with {'/'.join(current_lst)}")
+    
     # store prettified version of modified html
     new_text = soup.prettify()
 
