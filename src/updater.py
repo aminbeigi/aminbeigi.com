@@ -28,7 +28,6 @@ def update():
     # replace each 'about-seciton'
     for i, tag in enumerate(soup.find_all('div', {'class': 'about-section'})):
         tag.string.replace_with(data[i]['description'])
-
     
     # replace each 'bottom-section'
     for i, tag in enumerate(soup.find_all('i', {'class': 'fas fa-code'})):
