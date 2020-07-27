@@ -21,11 +21,11 @@ def update():
     with open('index.html', 'r') as html_file:
         soup = BeautifulSoup(html_file.read(), features = 'html.parser')
         
-    # replace each 'section-title'
-    for i, tag in enumerate(soup.find_all('div', {'class': 'section-title'})):
+    # replace each 'title-section'
+    for i, tag in enumerate(soup.find_all('div', {'class': 'title-section'})):
         tag.string.replace_with(data[i]['name'])
 
-    # replace each 'about_seciton'
+    # replace each 'about-seciton'
     for i, tag in enumerate(soup.find_all('div', {'class': 'about-section'})):
         tag.string.replace_with(data[i]['description'])
 
