@@ -63,6 +63,7 @@ a:hover {
 .bottom-section {
     font-size: 14px;
     font-style: italic;
+    padding-top: 7.5px;
 }
 
 #github-avatar {
