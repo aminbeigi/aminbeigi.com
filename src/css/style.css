@@ -46,7 +46,7 @@ a:hover {
     align-self: center;
 }
 
-.box:focus {
+.box:active {
     color: #202020;
     background-color: white;
 }
