@@ -1,6 +1,6 @@
 import mechanicalsoup
-from bs4 import BeautifulSoup
 import json
+from bs4 import BeautifulSoup
 
 """ Automatic upadater for index.html.
 
