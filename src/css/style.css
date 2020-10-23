@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(19, 19, 20);
+}
+
+
 a {
     text-decoration: none;
     color: #fff;
@@ -8,89 +13,19 @@ a:hover {
     color: #fff;
 }
 
-.exodia-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.container-1 {
-    position: fixed;
-    width: 30vw;
-    min-height: 100vh;
+.container {
+    width: 100vw;
+    height: 100vh;
     text-align: center;
 }
 
-.container-2 {
-    display: inline-flex;
-    background-color: brown;
-    width: 70vw;
-    padding: 20px;
-    flex-wrap: wrap;
-    margin-left: 30vw;
+.container h1 {
+    font-size: 3rem;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-#title {
-    font-weight: bold;
-    flex-basis: 100%;
-    font-size: 72px;
-}
-
-.box {
-    flex: 1 1 45%;
-    padding: 20px;
-    margin: 25px;
-    background-color: #202020;
-    border-radius: 7.5px;
-    align-self: center;
-}
-
-.box:active {
-    color: #202020;
-    background-color: white;
-}
-
-.title-section {
-    font-size: 48px;
-    font-weight: bolder;
-}
-
-.about-section {
-    font-size: 20px;
-}
-
-.bottom-section {
-    font-size: 14px;
-    font-style: italic;
-    padding-top: 7.5px;
-}
-
-#github-avatar {
-    background: url(https://avatars3.githubusercontent.com/u/39206588?s=460&u=34894ad…&v=4);
-    height: 320px;
-    max-width: 320px;
-    background-size: cover;
-    margin: 1em auto;
-    overflow: hidden;
-    border-radius: 40px;
-}
-
-#username {
-    display: block;
-    font-size: 52px;
-    overflow: hidden;
-    margin-bottom: 0.1em;
-}
-
-#contact {
-    display: block;
-    font-size: 20px;
-    overflow: hidden;
-}
-
-#contact h4 {
-    color: grey;
+.container h2 {
+    font-size: 1.4rem;
 }
 
 .socials {
