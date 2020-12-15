@@ -40,7 +40,8 @@ a:hover {
 }
 
     .error-container img{
-        margin-top: 40px
+        margin-top: 40px;
+        margin-bottom: 25px;
     }
 
     .error-container p{
@@ -58,7 +59,7 @@ a:hover {
   
   /* Darker background on mouse-over */
   .home-btn:hover {
-    background-color: darkred;
+    background-color: #6495ED;
   }
 
 #footer {
