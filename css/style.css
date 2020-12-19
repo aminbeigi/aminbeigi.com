@@ -59,7 +59,7 @@ a:hover {
   
   /* Darker background on mouse-over */
   .home-btn:hover {
-    background-color: #6495ED;
+    background-color: grey;
   }
 
 #footer {
