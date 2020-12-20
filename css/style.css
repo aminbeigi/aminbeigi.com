@@ -57,9 +57,15 @@ a:hover {
     cursor: pointer;
   }
   
-  .btn-primary:hover {
-    color: #e6e6e6
-  }
+    .btn-primary:hover {
+        color: #e6e6e6;
+    }
+    .btn-primary:focus {     
+        display: none;    
+    }
+  #style:focus {     
+    background-color:yellow;    
+}
 
 #footer {
     width: 100%;
