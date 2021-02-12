@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Montserrat-Light';
     src: local('Montserrat-Light'), url(./fonts/Montserrat-Light.ttf) format('truetype');
-  }
+}
 
 body {
     margin: 0;
