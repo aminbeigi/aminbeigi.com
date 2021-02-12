@@ -9,34 +9,6 @@
     color: #e6e6e6
 }
 
-#wrapper {
-    min-height: 100vh;
-    position: relative;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #fff;
-}
-
-.container {
-    padding: 50px;
-    text-align: center;
-}
-
-.container h1 {
-    font-size: 110px;
-}
-
-.container h2 {
-    font-size: 27.5px;
-}
-
 .error-container {
     margin: 0 auto;
 }
@@ -72,12 +44,4 @@ a:hover {
 .socials {
     font-size: 35px;
     margin-top: 20px;
-}
-
-.socials i {
-    color: grey;
-}
-
-.socials i:hover {
-    color: #eeeeee;
 }
