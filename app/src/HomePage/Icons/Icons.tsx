@@ -1,12 +1,12 @@
 import React from 'react';
+import { Icon } from './Icon/Icon'
 
 export const Icons: React.FC = () => { 
     const githubLink = 'https://github.com/aminbeigi/truth-table-generator';
 
     return (
         <>
-            <div><button onAuxClick={() => window.open(githubLink)} onClick={() => window.location.href = githubLink}><i className="fab fa-github"></i></button></div>
-
+            <Icon url={githubLink} fontAwesomeIcon='fab fa-accessible-icon'/>
         </>
     );
 }
