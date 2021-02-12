@@ -8,7 +8,7 @@ export const Title = styled.h1`
 
 export const Tagline = styled.h2`
     font-size: 1.7rem;
-    font-weight: 100;
+    font-weight: 400;
     margin-top: 7.5px;
 `;
 
