@@ -19,6 +19,7 @@ export const FooterWrapper = styled.footer`
     left: 0;
     bottom: 0;
     margin-bottom: 1rem;
+    z-index: -1;
 `;
 
 export const Footer = styled.footer`
