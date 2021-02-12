@@ -1,6 +1,7 @@
-body, html {
+* {
     background-color: rgb(19, 19, 20);
     font-family: 'Montserrat', sans-serif;   
+    text-align: center;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -67,19 +68,6 @@ a:hover {
     background-color:yellow;    
 }
 
-#footer {
-    width: 100%;
-    height: auto;
-    text-align: center;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    color: #808080;
-}
-
-#footer p {
-    font-size: 12px;
-}
 
 .socials {
     font-size: 35px;
