@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-    font-size: 6.2rem;
+    font-size: 6.9rem;
     font-weight: 400;
-    margin-top: 35px;
+    margin-top: 45px;
 `;
 
 export const Tagline = styled.h2`
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 100;
-    margin-top: 10px;
+    margin-top: 7.5px;
 `;
 
 export const FooterWrapper = styled.footer`
@@ -18,10 +18,10 @@ export const FooterWrapper = styled.footer`
     position: absolute;
     left: 0;
     bottom: 0;
-    margin-bottom: 5px;
+    margin-bottom: 1rem;
 `;
 
 export const Footer = styled.footer`
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: #808080;
 `;

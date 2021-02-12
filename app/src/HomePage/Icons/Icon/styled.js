@@ -5,8 +5,8 @@ export const StyledI = styled.i`
 `
 
 export const IconWrapper = styled.a`
-    font-size: 2.2rem;
-    margin: 0.5em;
+    font-size: 3rem;
+    margin: 0.65em;
     color: grey;
     &:hover ${StyledI} {
         color: #eee;
