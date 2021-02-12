@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from './Icon/Icon'
+import { IconsWrapper } from './styled'
 
 export const Icons: React.FC = () => { 
     // TODO: typescript here?
@@ -13,14 +14,14 @@ export const Icons: React.FC = () => {
     ]
 
     return (
-        <>
+        <IconsWrapper>
             {
-                icons.map(icon => {
+                icons.map((icon, key) => {
                     return (
-                        <Icon url={icon.url} fontAwesomeIcon={icon.iconName}/>
+                        <Icon key={key} url={icon.url} fontAwesomeIcon={icon.iconName}/>
                     )
                 })
             }
-        </>
+        </IconsWrapper>
     );
 }

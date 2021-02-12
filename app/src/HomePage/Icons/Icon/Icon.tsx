@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from './styled';
+import { IconWrapper, StyledI } from './styled';
 
 interface Props {
     url: string;
@@ -8,8 +8,10 @@ interface Props {
 
 export const Icon: React.FC<Props> = ({url, fontAwesomeIcon}) => { 
     return (
-        <>
-            <div><IconButton onAuxClick={() => window.open(url)} onClick={() => window.location.href = url}><i className={fontAwesomeIcon}></i></IconButton></div>
-        </>
+        <IconWrapper href={url}>
+            <span>
+                <StyledI className={fontAwesomeIcon}></StyledI>
+            </span>
+        </IconWrapper>
     );
 }
