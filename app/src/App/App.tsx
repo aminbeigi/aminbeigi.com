@@ -1,11 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { Homepage } from '../HomePage/index';
 import './App.css';
 
-export const App = () => { 
-  return (
-    <div className="App">
-        test;
-    </div>
-  );
-}
+
+ReactDOM.render(
+    <Router>
+        <Switch>
+            <Route exact path="/" component={ Homepage }></Route>
+        </Switch>
+    </Router>,
+    document.getElementById('root')
+);
