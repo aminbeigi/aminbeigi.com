@@ -2,11 +2,25 @@ import React from 'react';
 import { Icon } from './Icon/Icon'
 
 export const Icons: React.FC = () => { 
-    const githubLink = 'https://github.com/aminbeigi/truth-table-generator';
+    // TODO: typescript here?
+    const icons = [
+        {url: 'mailto:me@aminbeigi.com', iconName: 'far fa-envelope'},
+        {url: 'http://aminbeigi.com/blog', iconName: 'fas fa-blog'},
+        {url: 'https://www.linkedin.com/in/amin-ghasembeigi-09ab401b0', iconName: 'fab fa-linkedin-in'},
+        {url: 'https://github.com/aminbeigi', iconName: 'fab fa-github'},
+        {url: 'https://twitter.com/@aminbeigi9', iconName: 'fab fa-twitter'},
+        {url: 'https://leetcode.com/aminbeigi', iconName: 'fas fa-lira-sign'}
+    ]
 
     return (
         <>
-            <Icon url={githubLink} fontAwesomeIcon='fab fa-accessible-icon'/>
+            {
+                icons.map(icon => {
+                    return (
+                        <Icon url={icon.url} fontAwesomeIcon={icon.iconName}/>
+                    )
+                })
+            }
         </>
     );
 }
