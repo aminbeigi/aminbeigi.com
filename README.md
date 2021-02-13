@@ -2,7 +2,7 @@
 <img src="https://avatars3.githubusercontent.com/u/39206588?s=460&u=34894adba6753fe0d7473d5abef3fafeb286389d&v=4" height="320px" width="320px"/>
 <br/>
 <h3 align="center">aminbeigi.com</h3>
-<p align="center">Source code for the aminbeigi.com website. Powered by HTML and CSS.</p>
+<p align="center">Source code for the aminbeigi.com website.</p>
 <h2></h2>
 </p>
 <br />
