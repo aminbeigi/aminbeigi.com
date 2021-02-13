@@ -5,6 +5,7 @@ import { Homepage } from '../Homepage/index';
 import { NotFoundPage } from '../NotFoundPage/index';
 import './App.css';
 import './Overrides.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App: React.FC = () => {
     // TODO: white flicker on page reload... cause dev server?
