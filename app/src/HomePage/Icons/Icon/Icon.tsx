@@ -1,16 +1,17 @@
 import React from 'react';
-import { IconWrapper, StyledI } from './styled';
+import { IconWrapper } from './styled';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
     url: string;
-    fontAwesomeIcon: string;
+    iconName: any;
 }
 
-export const Icon: React.FC<Props> = ({url, fontAwesomeIcon}) => { 
+export const Icon: React.FC<Props> = ({url, iconName}) => { 
     return (
         <IconWrapper href={url}>
             <span>
-                <StyledI className={fontAwesomeIcon}></StyledI>
+                <FontAwesomeIcon icon={iconName} className="font-awesome-icon"/>
             </span>
         </IconWrapper>
     );
