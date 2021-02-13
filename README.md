@@ -14,7 +14,7 @@
 
 ## Description
 Source code for the [aminbeigi.com](http://aminbeigi.com/) website.  
-Built using React, Reactstarp, Reactrouter, Javascript and Typescript. 
+Built using React, Reactstrap, Reactrouter, Javascript and Typescript. 
 
 ## Contributions
 Contributions are always welcome!  
