@@ -8,7 +8,6 @@ import './Overrides.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App: React.FC = () => {
-    // TODO: white flicker on page reload... cause dev server?
     return (
         <Router>
             <Switch>
