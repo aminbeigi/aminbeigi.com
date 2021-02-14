@@ -4,10 +4,11 @@ import { IconsWrapper } from './styled'
 
 import { faEnvelope, faBlog, faLiraSign  }from '@fortawesome/free-solid-svg-icons'
 import { faLinkedinIn, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export const Icons: React.FC = () => { 
     // TODO: typescript here?
-    const icons = [
+    const icons: { url: string, iconName: IconProp }[] = [
         {url: 'mailto:me@aminbeigi.com', iconName: faEnvelope},
         {url: 'http://aminbeigi.com/blog', iconName: faBlog},
         {url: 'https://www.linkedin.com/in/amin-ghasembeigi-09ab401b0', iconName: faLinkedinIn},
