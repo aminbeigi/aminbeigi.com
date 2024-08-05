@@ -1,5 +1,5 @@
 import styles from "./Contact.module.css";
-import { getImageUrl } from "../../utils";
+import { getImageUrl } from "../../../utils";
 
 export function Contact() {
   return (

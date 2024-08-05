@@ -1,5 +1,5 @@
 import styles from "./Hero.module.css";
-import { getImageUrl } from "../../utils";
+import { getImageUrl } from "../../../utils";
 
 export function Hero() {
   return (
@@ -7,8 +7,7 @@ export function Hero() {
       <div className={styles.content}>
         <h1 className={styles.title}>Hi, I'm Amin</h1>
         <p className={styles.description}>
-          I'm Amin Beigi. A passionate developer based in Sydney,
-          Australia. 📍
+          I'm Amin Beigi. A passionate developer based in Sydney, Australia. 📍
         </p>
         <a href="mailto:me@aminbeigi.com" className={styles.contactBtn}>
           Contact Me

@@ -1,20 +1,50 @@
-import styles from "./App.module.css";
-import { Navbar } from "./components/Navbar/Navbar";
-import { Hero } from "./components/Hero/Hero";
-import { About } from "./components/About/About";
-import { Projects } from "./components/Projects/Projects";
-import { Contact } from "./components/Contact/Contact";
+import { Navbar } from "./components/home/Navbar/Navbar";
+import { Hero } from "./components/home/Hero/Hero";
+import { About } from "./components/home/About/About";
+import { Contact } from "./components/home/Contact/Contact";
+import { IndexPage } from "./components/blog/IndexPage/IndexPage";
+import { Routes, Route } from "react-router-dom";
+import { PostPage } from "./components/blog/PostPage/PostPage";
 
-function App() {
+import styles from "./App.module.css";
+
+function HomePage() {
   return (
     <div className={styles.App}>
       <Navbar />
       <Hero />
       <About />
-      <Projects />
       <Contact />
     </div>
   );
 }
 
-export default App;
+function BlogIndexPage() {
+  return (
+    <div className={styles.App}>
+      <Navbar />
+      <IndexPage />
+      <Contact />
+    </div>
+  );
+}
+
+function BlogPost() {
+  return (
+    <div className={styles.App}>
+      <Navbar />
+      <PostPage />
+      <Contact />
+    </div>
+  );
+}
+
+export function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/blog" element={<BlogIndexPage />} />
+      <Route path="/blog/:id" element={<BlogPost />} />
+    </Routes>
+  );
+}

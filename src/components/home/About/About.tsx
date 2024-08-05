@@ -1,5 +1,5 @@
 import styles from "./About.module.css";
-import { getImageUrl } from "../../utils";
+import { getImageUrl } from "../../../utils";
 
 export function About() {
   return (
@@ -17,8 +17,8 @@ export function About() {
             <div className={styles.aboutItemText}>
               <h3>Backend Developer</h3>
               <p>
-                I thrive in creating scalable infrastructures on the backend,
-                ensuring robust and efficient performance.
+                I thrive in creating scalable infrastructures that deliver
+                efficient performance.
               </p>
             </div>
           </li>
@@ -27,8 +27,8 @@ export function About() {
             <div className={styles.aboutItemText}>
               <h3>Frontend Developer</h3>
               <p>
-                I have frontend experience, allowing me to contribute across the
-                full stack and broaden my skill set.
+                With experience in frontend development, I can contribute across
+                the entire stack and expand my skill set.
               </p>
             </div>
           </li>
@@ -37,8 +37,8 @@ export function About() {
             <div className={styles.aboutItemText}>
               <h3>Technical Learning</h3>
               <p>
-                I'm dedicated to continuously learning and improving my
-                technical skills.
+                I'm on a never-ending quest to continuously learn and level up
+                my skills.
               </p>
             </div>
           </li>
