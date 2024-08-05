@@ -13,7 +13,7 @@
 
 ## Description
 
-This repository hosts the source code for my personal website, [aminbeigi.com](http://aminbeigi.com/), where I showcase my projects and interests.
+This repository hosts the source code for my personal website and blog, [aminbeigi.com](http://aminbeigi.com/).
 
 The website is built using React, Typescript and Vite.
 
