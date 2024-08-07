@@ -3,4 +3,4 @@ export type TBlogPost = {
     title: string;
     date: string;
     content: string;
-}
+};
