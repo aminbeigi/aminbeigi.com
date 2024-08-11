@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
@@ -11,6 +11,7 @@ import { IndexPage } from './components/blog/IndexPage/IndexPage';
 import { PostPage } from './components/blog/PostPage/PostPage';
 
 import styles from './App.module.css';
+import { NotFoundPage } from './components/404/NotFoundPage';
 
 interface PageLayoutProps {
     children: ReactNode;
@@ -44,8 +45,13 @@ function BlogIndexPage() {
 }
 
 function BlogPost() {
+    const hasHighlighted = useRef(false);
+
     useEffect(() => {
-        hljs.highlightAll();
+        if (!hasHighlighted.current) {
+            hljs.highlightAll();
+            hasHighlighted.current = true;
+        }
     }, []);
 
     return (
@@ -61,6 +67,7 @@ export function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
 }

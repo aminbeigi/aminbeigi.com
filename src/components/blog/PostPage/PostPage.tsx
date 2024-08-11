@@ -1,12 +1,25 @@
 import ReactMarkdown from 'react-markdown';
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './PostPage.module.css';
 import { findPostBySlug } from '../../../utils';
 
 export function PostPage() {
-    const { id: slug } = useParams();
-    const blogPost = findPostBySlug(slug!)!;
+    const navigate = useNavigate();
+    const { id: slug } = useParams<{ id?: string }>();
+    const blogPost = findPostBySlug(slug ?? '');
+
+    useEffect(() => {
+        // if we don't find a blog post go to the index page
+        if (!blogPost) {
+            navigate('/blog');
+        }
+    }, [blogPost, navigate]);
+
+    if (!blogPost) {
+        return null;
+    }
 
     return (
         <section className={styles.container} id="post-page">

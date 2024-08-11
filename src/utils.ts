@@ -1,6 +1,9 @@
 import { blogPosts } from './components/blog/data';
+import type { TBlogPost } from './types';
 
-import { TBlogPost } from './types';
+const blogPostsBySlugCache: Map<string, TBlogPost> = new Map(
+    blogPosts.map(post => [convertTitleToSlug(post.title), post])
+)
 
 export function getImageUrl(path: string) {
     return new URL(`/assets/${path}`, import.meta.url).href;
@@ -14,12 +17,6 @@ export function convertTitleToSlug(title: string): string {
         .replace(/^-+|-+$/g, ''); // remove leading and trailing hyphens
 }
 
-export function findPostBySlug(input: string): TBlogPost | null {
-    for (const blogPost of blogPosts) {
-        const slug = convertTitleToSlug(blogPost.title);
-        if (slug === input) {
-            return blogPost;
-        }
-    }
-    return null;
+export function findPostBySlug(slug: string): TBlogPost | null {
+    return blogPostsBySlugCache.get(slug) || null;
 }
