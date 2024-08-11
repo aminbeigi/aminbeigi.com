@@ -1,49 +1,57 @@
+import { ReactNode, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
-import { useLayoutEffect } from 'react';
 
 import { Navbar } from './components/home/Navbar/Navbar';
 import { Hero } from './components/home/Hero/Hero';
 import { About } from './components/home/About/About';
 import { Contact } from './components/home/Contact/Contact';
 import { IndexPage } from './components/blog/IndexPage/IndexPage';
-import { Routes, Route } from 'react-router-dom';
 import { PostPage } from './components/blog/PostPage/PostPage';
 
 import styles from './App.module.css';
 
-function HomePage() {
+interface PageLayoutProps {
+    children: ReactNode;
+}
+
+function PageLayout({ children }: PageLayoutProps) {
     return (
         <div className={styles.App}>
             <Navbar />
-            <Hero />
-            <About />
+            {children}
             <Contact />
         </div>
+    );
+}
+
+function HomePage() {
+    return (
+        <PageLayout>
+            <Hero />
+            <About />
+        </PageLayout>
     );
 }
 
 function BlogIndexPage() {
     return (
-        <div className={styles.App}>
-            <Navbar />
+        <PageLayout>
             <IndexPage />
-            <Contact />
-        </div>
+        </PageLayout>
     );
 }
 
 function BlogPost() {
-    useLayoutEffect(() => {
+    useEffect(() => {
         hljs.highlightAll();
     }, []);
 
     return (
-        <div className={styles.App}>
-            <Navbar />
+        <PageLayout>
             <PostPage />
-            <Contact />
-        </div>
+        </PageLayout>
     );
 }
 
