@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
