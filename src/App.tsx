@@ -9,9 +9,9 @@ import { About } from './components/home/About/About';
 import { Contact } from './components/home/Contact/Contact';
 import { IndexPage } from './components/blog/IndexPage/IndexPage';
 import { PostPage } from './components/blog/PostPage/PostPage';
+import { NotFoundPage } from './components/404/NotFoundPage';
 
 import styles from './App.module.css';
-import { NotFoundPage } from './components/404/NotFoundPage';
 
 interface PageLayoutProps {
     children: ReactNode;
@@ -45,13 +45,8 @@ function BlogIndexPage() {
 }
 
 function BlogPost() {
-    const hasHighlighted = useRef(false);
-
     useEffect(() => {
-        if (!hasHighlighted.current) {
             hljs.highlightAll();
-            hasHighlighted.current = true;
-        }
     }, []);
 
     return (
