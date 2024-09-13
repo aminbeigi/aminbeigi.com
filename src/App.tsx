@@ -1,68 +1,40 @@
-import { ReactNode, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
+import BlogIndexPage from './components/BlogIndexPage/BlogIndexPage';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
+import Layout from './components/Layout/Layout';
+import BlogPostPage from './components/BlogPostPage/BlogPostPage';
 
-import { Navbar } from './components/home/Navbar/Navbar';
-import { Hero } from './components/home/Hero/Hero';
-import { About } from './components/home/About/About';
-import { Contact } from './components/home/Contact/Contact';
-import { IndexPage } from './components/blog/IndexPage/IndexPage';
-import { PostPage } from './components/blog/PostPage/PostPage';
-import { NotFoundPage } from './components/404/NotFoundPage';
-
-import styles from './App.module.css';
-
-interface PageLayoutProps {
-    children: ReactNode;
+function printCoolMessageToConsole(): void {
+    const msg = '%c Hello 🕵️! Welcome to my site';
+    const styles = [
+        'font-size: 12px',
+        'font-family: monospace',
+        'background: white',
+        'display: inline-block',
+        'color: black',
+        'padding: 8px 19px',
+        'border: 1px dashed;'
+    ].join(';');
+    console.log(msg, styles);
 }
 
-function PageLayout({ children }: PageLayoutProps) {
+printCoolMessageToConsole();
+
+
+function App() {
     return (
-        <div className={styles.App}>
-            <Navbar />
-            {children}
-            <Contact />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="/blog" element={<BlogIndexPage />} />
+                    <Route path="/blog/:id" element={<BlogPostPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 
-function HomePage() {
-    return (
-        <PageLayout>
-            <Hero />
-            <About />
-        </PageLayout>
-    );
-}
-
-function BlogIndexPage() {
-    return (
-        <PageLayout>
-            <IndexPage />
-        </PageLayout>
-    );
-}
-
-function BlogPost() {
-    useEffect(() => {
-            hljs.highlightAll();
-    }, []);
-
-    return (
-        <PageLayout>
-            <PostPage />
-        </PageLayout>
-    );
-}
-
-export function App() {
-    return (
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/blog" element={<BlogIndexPage />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-    );
-}
+export default App;

@@ -1,4 +1,4 @@
-export type TBlogPost = {
+export interface TBlogPost {
     id: number;
     title: string;
     date: string;

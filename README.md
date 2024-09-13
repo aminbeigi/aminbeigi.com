@@ -15,7 +15,7 @@
 
 This repository hosts the source code for my personal website and blog, [aminbeigi.com](http://aminbeigi.com/).
 
-The website is built using React, Typescript and Vite.
+The website is built using React, Typescript, Tailwind CSS and Vite.
 
 ## Contributions
 
