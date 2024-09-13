@@ -5,7 +5,7 @@ function Projects() {
             <div className="mb-4">
                 <h3 className="font-semibold">this website</h3>
                 <p className="text-textGrey">creator and maintainer</p>
-                <p>my personal website, professional profile and blog</p>
+                <p>my personal website, professional profile and programming blog</p>
             </div>
             <div className="mb-2">
                 <a
@@ -18,7 +18,7 @@ function Projects() {
                 </a>
 
                 <p className="text-textGrey">creator and maintainer</p>
-                <p>website that helps students validate truth tables</p>
+                <p>website that helps students visualise and validate truth tables</p>
             </div>
             <a
                 target="_blank"

@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    margin: 0;
-    padding:0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: grey;
-}
+/* Hide scrollbar for Webkit browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    display: none;
+  }

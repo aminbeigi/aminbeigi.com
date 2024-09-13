@@ -1,17 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function NavBar() {
+    const location = useLocation();
+
     return (
         <nav className="flex justify-center space-x-8 mb-4">
             <Link
                 to="/"
-                className="text-textGrey hover:text-accentPurple hover:underline"
+                className={`hover:underline decoration-2 underline-offset-4 ${
+                    location.pathname === '/'
+                        ? '!text-accentPurple underline decoration-2 underline-offset-4'
+                        : 'text-textGrey hover:!text-accentPurple'
+                }`}
             >
                 home
             </Link>
             <Link
                 to="/blog"
-                className="text-textGrey hover:text-accentPurple hover:underline"
+                className={`hover:underline decoration-2 underline-offset-4 ${
+                    location.pathname === '/blog'
+                        ? '!text-accentPurple underline decoration-2 underline-offset-4'
+                        : 'text-textGrey hover:!text-accentPurple'
+                }`}
             >
                 blog
             </Link>
