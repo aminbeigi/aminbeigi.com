@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { blogPosts } from '../../data';
 import { TBlogPost } from '../../types';
-import { convertTitleToSlug } from '../../utils';
+import { convertTitleToSlug, getBlogPosts } from '../../utils';
 
 interface TPostProps {
     date: string;
@@ -24,7 +23,7 @@ function Post({ date, title }: TPostProps) {
 function BlogIndexPage() {
     return (
         <div className="text-primaryWhite flex flex-col items-center">
-            {blogPosts.map((blogPost: TBlogPost) => (
+            {getBlogPosts().map((blogPost: TBlogPost) => (
                 <Post
                     key={blogPost.id}
                     title={blogPost.title}

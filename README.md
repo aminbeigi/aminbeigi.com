@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon.png" height="200px" width="200px"/>
+  <img src="assets/goose.png" height="200px" width="200px"/>
   <br/>
   <h3 align="center">aminbeigi.com</h3>
 </p>
@@ -13,7 +13,8 @@
 
 ## Description
 
-This repository hosts the source code for my personal website and blog, [aminbeigi.com](http://aminbeigi.com/).
+This repository hosts the source code for my personal website and blog,
+[aminbeigi.com](http://aminbeigi.com/).
 
 The website is built using React, Typescript, Tailwind CSS and Vite.
 

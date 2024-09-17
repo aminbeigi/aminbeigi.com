@@ -3,9 +3,51 @@ import {
     FiBriefcase,
     FiCode,
     FiFeather,
-    FiGlobe,
-    FiZap
+    FiZap,
+    FiBookOpen
 } from 'react-icons/fi';
+
+import { PiPersonSimpleHike } from 'react-icons/pi';
+
+function RandomFacts() {
+    const facts = [
+        {
+            icon: <FiFeather className="text-accentPurple" />,
+            text: "I'm a minimalist"
+        },
+        {
+            icon: <FiZap className="text-accentPurple" />,
+            text: 'my favourite animal is the goose'
+        },
+
+        {
+            icon: <FiBookOpen className="text-accentPurple" />,
+            text: 'I enjoy reading books, especially philosophy'
+        },
+        {
+            icon: <PiPersonSimpleHike className="text-accentPurple" />,
+            text: 'I like outdoors hiking'
+        },
+        {
+            icon: <FiCode className="text-accentPurple" />,
+            text: 'javascript is my favourite and least favourite programming language'
+        }
+    ];
+
+    return (
+        <div>
+            <h2 className="text-xl font-medium mb-2">random facts about me</h2>
+            <ul className="space-y-2">
+                {facts.map((fact, index) => (
+                    <li key={index} className="flex items-center space-x-3">
+                        {fact.icon}
+                        <span>{fact.text}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
 
 function Header() {
     return (
@@ -22,44 +64,15 @@ function Header() {
                 </div>
             </div>
 
-            <p className="mt-4 text-primaryWhite">
-                I'm a passionate fullstack developer with an interest in
-                building scalable, performant systems while also designing
-                intuitive and visually appealing frontends. if I'm not coding
-                I'm probably reading, outdoors hiking, running, or lifting
-                weights.
+            <p className="text-primaryWhite mb-8">
+                A{' '}
+                <span className="text-accentPurple font-medium">
+                    fullstack developer
+                </span>{' '}
+                with an interest in building high-performance, scalable systems
+                with intuitive and user-friendly frontend interfaces.
             </p>
-            <div>
-                <h2 className="text-xl font-semibold mb-4 mt-8">
-                    random facts about me
-                </h2>
-                <ul className="space-y-2">
-                    <li className="flex items-center space-x-3">
-                        <FiFeather className="text-accentPurple" />
-                        <span>I'm a minimalist</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                        <FiZap className="text-accentPurple" />
-                        <span>
-                            my favourite animal is the goose (been obsessed ever
-                            since I saw them flying in a V-formation)
-                        </span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                        <FiGlobe className="text-accentPurple" />
-                        <span>
-                            I speak 2.5 languages (working on the third one)
-                        </span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                        <FiCode className="text-accentPurple" />
-                        <span>
-                            javascript is my favourite and least favourite
-                            programming language
-                        </span>
-                    </li>
-                </ul>
-            </div>
+            <RandomFacts />
         </div>
     );
 }

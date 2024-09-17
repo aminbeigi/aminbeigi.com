@@ -1,20 +1,41 @@
 import { Link } from 'react-router-dom';
+import { convertTitleToSlug, getBlogPosts } from '../../utils';
+import { TBlogPost } from '../../types';
+
+interface TProps {
+    title: string;
+    date: string;
+}
+
+function BlogPost(props: TProps) {
+    return (
+        <ul>
+            <li className="mb-2">
+                <Link
+                    to={`/blog/${convertTitleToSlug(props.title)}`}
+                    className="text-blue-500 hover:underline hover:text-accentPurple"
+                >
+                    {props.title.toLocaleLowerCase()}
+                </Link>
+                <span className="text-textGrey ml-4">
+                    {props.date.toLowerCase()}
+                </span>
+            </li>
+        </ul>
+    );
+}
 
 function Blog() {
     return (
         <>
-            <h2 className="text-xl font-semibold mb-4">blog</h2>
-            <ul>
-                <li className="mb-2">
-                    <Link
-                        to="/blog/functional-programming-in-typescript"
-                        className="text-blue-500 hover:underline hover:text-accentPurple"
-                    >
-                        functional programming in typescript
-                    </Link>
-                    <span className="text-textGrey ml-4">aug 3, 2024</span>
-                </li>
-            </ul>
+            <h2 className="text-xl font-medium mb-4">blog</h2>
+            {getBlogPosts().map((blogPost: TBlogPost, index: number) => (
+                <BlogPost
+                    key={index}
+                    title={blogPost.title}
+                    date={blogPost.date}
+                />
+            ))}
             <Link
                 to="/blog"
                 className="text-blue-500 hover:underline hover:text-accentPurple"

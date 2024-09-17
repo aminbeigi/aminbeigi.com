@@ -4,7 +4,7 @@ function NavBar() {
     const location = useLocation();
 
     return (
-        <nav className="flex justify-center space-x-8 mb-4">
+        <nav className="flex justify-center space-x-12 text-xl">
             <Link
                 to="/"
                 className={`hover:underline decoration-2 underline-offset-4 ${

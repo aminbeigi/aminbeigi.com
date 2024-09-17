@@ -2,8 +2,10 @@ import { blogPosts } from './data';
 import type { TBlogPost } from './types';
 
 const blogPostsBySlugCache: Map<string, TBlogPost> = new Map(
-    blogPosts.map(post => [convertTitleToSlug(post.title), post])
-)
+    blogPosts.map((post) => [convertTitleToSlug(post.title), post])
+);
+
+const reversedBlogPostsCache = blogPosts.slice().reverse();
 
 export function convertTitleToSlug(title: string): string {
     return title
@@ -15,4 +17,8 @@ export function convertTitleToSlug(title: string): string {
 
 export function findPostBySlug(slug: string): TBlogPost | null {
     return blogPostsBySlugCache.get(slug) || null;
+}
+
+export function getBlogPosts(): TBlogPost[] {
+    return reversedBlogPostsCache;
 }
