@@ -18,7 +18,7 @@ function NavBar() {
             <Link
                 to="/blog"
                 className={`hover:underline decoration-2 underline-offset-4 ${
-                    location.pathname === '/blog'
+                    location.pathname.includes('/blog')
                         ? '!text-accentPurple underline decoration-2 underline-offset-4'
                         : 'text-textGrey hover:!text-accentPurple'
                 }`}

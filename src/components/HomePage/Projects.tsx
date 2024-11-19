@@ -33,6 +33,18 @@ function Projects() {
                     tables
                 </p>
             </div>
+            <div className="mb-4">
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://oztechjobs.vercel.app"
+                    className="text-blue-500 hover:underline hover:text-accentPurple"
+                >
+                    <h3 className="font-medium">job listing board</h3>
+                </a>
+                <p className="text-textGrey">creator and maintainer</p>
+                <p>displays job listings and uses LLM to analyze queries</p>
+            </div>
             <a
                 target="_blank"
                 rel="noopener noreferrer"

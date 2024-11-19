@@ -1,11 +1,8 @@
-import {
-    FiMapPin,
-    FiBriefcase,
-    FiCode,
-    FiFeather,
-    FiZap,
-    FiBookOpen
-} from 'react-icons/fi';
+import { FiMapPin, FiBriefcase, FiFeather, FiBookOpen } from 'react-icons/fi';
+
+import { GiGoose } from 'react-icons/gi';
+
+import { FaMotorcycle } from 'react-icons/fa';
 
 import { PiPersonSimpleHike } from 'react-icons/pi';
 
@@ -13,10 +10,10 @@ function RandomFacts() {
     const facts = [
         {
             icon: <FiFeather className="text-accentPurple" />,
-            text: "I'm a minimalist"
+            text: 'im a minimalist'
         },
         {
-            icon: <FiZap className="text-accentPurple" />,
+            icon: <GiGoose className="text-accentPurple" />,
             text: 'my favourite animal is the goose'
         },
 
@@ -29,8 +26,8 @@ function RandomFacts() {
             text: 'I like outdoors hiking'
         },
         {
-            icon: <FiCode className="text-accentPurple" />,
-            text: 'javascript is my favourite and least favourite programming language'
+            icon: <FaMotorcycle className="text-accentPurple" />,
+            text: 'I ride motorcycles'
         }
     ];
 

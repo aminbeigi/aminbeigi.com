@@ -10,14 +10,14 @@ interface TProps {
 function BlogPost(props: TProps) {
     return (
         <ul>
-            <li className="mb-2">
+            <li className="mb-2 grid grid-cols-2 gap-1">
                 <Link
                     to={`/blog/${convertTitleToSlug(props.title)}`}
                     className="text-blue-500 hover:underline hover:text-accentPurple"
                 >
                     {props.title.toLocaleLowerCase()}
                 </Link>
-                <span className="text-textGrey ml-4">
+                <span className="text-textGrey">
                     {props.date.toLowerCase()}
                 </span>
             </li>
