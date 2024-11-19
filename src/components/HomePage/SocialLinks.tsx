@@ -21,10 +21,6 @@ function SocialLinks() {
 
     return (
         <div>
-            <h2 className="text-xl font-semibold mb-4 text-primaryWhite">
-                links
-            </h2>
-
             <div className="flex justify-center space-x-8">
                 {links.map((link) => (
                     <a
@@ -34,7 +30,7 @@ function SocialLinks() {
                         rel="noopener noreferrer"
                         className="flex items-center space-x-2 text-blue-500 hover:text-accentPurple"
                     >
-                        <span className="text-2xl">{link.icon}</span>
+                        <span className="text-3xl">{link.icon}</span>
                         <span className="font-medium">{link.label}</span>
                     </a>
                 ))}

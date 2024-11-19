@@ -62,12 +62,14 @@ function Header() {
             </div>
 
             <p className="text-primaryWhite mb-8">
-                A{' '}
+                A passionate{' '}
                 <span className="text-accentPurple font-medium">
                     fullstack developer
                 </span>{' '}
                 with an interest in building high-performance, scalable systems
-                with intuitive and user-friendly frontend interfaces.
+                with sleek, intuitive and user-friendly frontend interfaces. I
+                work with modern technologies and especially enjoy building
+                things with JavaScript.
             </p>
             <RandomFacts />
         </div>

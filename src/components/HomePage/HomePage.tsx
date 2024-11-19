@@ -1,9 +1,8 @@
 import Header from './Header';
-import Projects from './Projects';
-import Work from './Work';
 import Blog from './Blog';
 import SocialLinks from './SocialLinks';
 import Skills from './Skills';
+import WorkAndProjects from './WorkAndProjects';
 
 function HomePage() {
     return (
@@ -13,18 +12,17 @@ function HomePage() {
                     <Header />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <Work />
-                    <Projects />
+                <div className="mb-8">
+                    <WorkAndProjects />
                 </div>
 
                 <div className="mb-8">
                     <Skills />
                 </div>
-                <div className="mb-8">
+                <div className="mb-12">
                     <Blog />
                 </div>
-                <div className="flex space-x-4">
+                <div>
                     <SocialLinks />
                 </div>
             </div>
