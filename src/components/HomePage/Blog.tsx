@@ -10,7 +10,7 @@ interface TProps {
 function BlogPost(props: TProps) {
     return (
         <ul>
-            <li className="mb-2 grid grid-cols-2 gap-1">
+            <li className="mb-2.5 flex flex-col">
                 <Link
                     to={`/blog/${convertTitleToSlug(props.title)}`}
                     className="text-blue-500 hover:underline hover:text-accentPurple"

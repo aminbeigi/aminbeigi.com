@@ -3,8 +3,8 @@ import {
     SiTypescript,
     SiTailwindcss,
     SiExpress,
-    SiMongodb,
-    SiPostgresql
+    SiPostgresql,
+    SiNextdotjs
 } from 'react-icons/si';
 
 function Skills() {
@@ -15,8 +15,8 @@ function Skills() {
         <SiTailwindcss className="text-7xl text-teal-400" />,
         <FaNode className="text-7xl text-green-500" />,
         <SiExpress className="text-7xl text-gray-500" />,
-        <SiMongodb className="text-7xl text-green-600" />,
-        <SiPostgresql className="text-7xl text-blue-600" />
+        <SiPostgresql className="text-7xl text-blue-600" />,
+        <SiNextdotjs className="text-7xl text-green-600" />
     ];
     return (
         <div>
@@ -24,7 +24,7 @@ function Skills() {
                 skills
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
+            <div className="grid grid-cols-4  gap-6 justify-items-center">
                 {skills.map((skill, index) => (
                     <div
                         key={index}

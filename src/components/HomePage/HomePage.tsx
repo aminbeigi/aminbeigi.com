@@ -3,6 +3,7 @@ import Blog from './Blog';
 import SocialLinks from './SocialLinks';
 import Skills from './Skills';
 import WorkAndProjects from './WorkAndProjects';
+import RandomFacts from './RandomFacts';
 
 function HomePage() {
     return (
@@ -10,6 +11,10 @@ function HomePage() {
             <div>
                 <div className="mb-8">
                     <Header />
+                </div>
+
+                <div className="mb-8">
+                    <RandomFacts/>
                 </div>
 
                 <div className="mb-8">
