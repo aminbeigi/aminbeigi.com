@@ -1,6 +1,6 @@
 import { FiFeather, FiBookOpen } from 'react-icons/fi';
 
-import { GiGoose } from 'react-icons/gi';
+import { GiChocolateBar } from 'react-icons/gi';
 
 import { FaMotorcycle } from 'react-icons/fa';
 
@@ -13,8 +13,8 @@ function RandomFacts() {
             text: 'im a minimalist'
         },
         {
-            icon: <GiGoose className="text-accentPurple" />,
-            text: 'my favourite animal is the goose'
+            icon: <GiChocolateBar className="text-accentPurple" />,
+            text: 'I fancy dark chocolate'
         },
 
         {

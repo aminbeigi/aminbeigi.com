@@ -11,7 +11,7 @@ function Header() {
                 </div>
                 <div className="flex items-center space-x-2 text-textGrey">
                     <FiBriefcase className="text-accentPurple" />
-                    <span>hire me :)</span>
+                    <span>insurance australia group (iag)</span>
                 </div>
             </div>
 

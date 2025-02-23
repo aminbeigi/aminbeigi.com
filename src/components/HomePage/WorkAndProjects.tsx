@@ -1,11 +1,11 @@
 function WorkAndProjects() {
     const workExperiences = [
         {
-            title: 'consulting',
-            role: 'fullstack developer',
-            time: '2024 - present',
+            title: 'iag',
+            role: 'devops stuff',
+            time: '2025 - present',
             description:
-                'focusing on projects that involve automating business processes'
+                'just started! note to self: update this with all the cool stuff later'
         },
         {
             title: 'atlassian',
