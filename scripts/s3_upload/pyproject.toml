@@ -10,6 +10,7 @@ boto3 = "^1.36.22"
 python-dotenv = "^1.0.1"
 
 [tool.poetry.dev-dependencies]
+black = "^25.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
