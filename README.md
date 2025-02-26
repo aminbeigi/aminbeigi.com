@@ -11,18 +11,45 @@
   <img src="https://img.shields.io/github/license/aminbeigi/aminbeigi.com?style=flat-square">
 </p>
 
-## Description
+## 📖 Description
 
 This repository hosts the source code for my personal website and blog,
 [aminbeigi.com](http://aminbeigi.com/).
 
 The website is built using React, Typescript, Tailwind CSS and Vite.
 
-## Contributions
+## ⚙️ Requirements
+
+-   Node.js v20.16.0+
+-   npm
+-   Git
+
+## 🛠️ How to Run
+
+1. Clone the repository:
+
+```
+git clone https://github.com/aminbeigi/aminbeigi.com
+cd aminbeigi.com
+```
+
+2. Install dependencies:
+
+```
+npm install
+```
+
+3. Start the development server:
+
+```
+npm run dev
+```
+
+## 🎯 Contributions
 
 Contributions are always welcome!  
 Just make a [pull request](../../pulls).
 
-## License
+## 📜 License
 
 MIT License.
