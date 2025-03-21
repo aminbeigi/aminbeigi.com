@@ -32,37 +32,68 @@ def get_dist_files() -> DistFiles:
     return paths
 
 
-def upload_file(s3, file_path: Path, bucket_key: str) -> None:
-    """Upload a single file to the S3 bucket."""
+def upload_file(
+    s3_client, file_path: Path, bucket_key: str, extra_args: dict = None
+) -> None:
+    """Upload a single file to the S3 bucket with correct content type."""
     try:
+        # Set the content type based on file extension
+        if file_path.suffix == ".html":
+            extra_args = {"ContentType": "text/html"}
+        elif file_path.suffix == ".js":
+            extra_args = {"ContentType": "application/javascript"}
+        elif file_path.suffix == ".css":
+            extra_args = {"ContentType": "text/css"}
+        elif file_path.suffix == ".png":
+            extra_args = {"ContentType": "image/png"}
+        elif file_path.suffix == ".json":
+            extra_args = {"ContentType": "application/json"}
+
         with open(file_path, "rb") as data:
-            s3.Bucket(BUCKET_NAME).put_object(Key=bucket_key, Body=data)
+            s3_client.put_object(
+                Bucket=BUCKET_NAME, Key=bucket_key, Body=data, **(extra_args or {})
+            )
             logger.info(f"Uploaded {file_path}")
     except Exception as e:
         logger.error(f"Failed to upload {file_path}: {e}", exc_info=True)
         raise
 
 
-def upload_assets(s3, assets_path: Path) -> None:
+def upload_index(s3_client, index_path: Path) -> None:
+    """Upload the index file to S3 with the correct content type."""
+    upload_file(
+        s3_client, index_path, "index.html", extra_args={"ContentType": "text/html"}
+    )
+
+
+def upload_icon(s3_client, icon_path: Path) -> None:
+    """Upload the icon file to S3 with the correct content type."""
+    upload_file(
+        s3_client, icon_path, "icon.png", extra_args={"ContentType": "image/png"}
+    )
+
+
+def upload_assets(s3_client, assets_path: Path) -> None:
     """Upload all files from the assets directory to S3."""
     for file_path in assets_path.glob("*"):
         if file_path.is_file():
-            upload_file(s3, file_path, f"assets/{file_path.name}")
+            upload_file(s3_client, file_path, f"assets/{file_path.name}")
 
 
 def upload_files(assets_path: Path, index_path: Path, icon_path: Path) -> None:
     """Upload all necessary files to the S3 bucket."""
-    s3 = boto3.resource("s3")
+    s3_client = boto3.client("s3")
 
     try:
-        s3.Bucket(BUCKET_NAME).load()
+        # Check if the bucket exists
+        s3_client.head_bucket(Bucket=BUCKET_NAME)
     except ClientError:
         logger.error(f"The bucket {BUCKET_NAME} does not exist", exc_info=True)
         raise ValueError(f"The bucket {BUCKET_NAME} does not exist")
 
-    upload_assets(s3, assets_path)
-    upload_file(s3, index_path, index_path.name)
-    upload_file(s3, icon_path, icon_path.name)
+    upload_assets(s3_client, assets_path)
+    upload_index(s3_client, index_path)
+    upload_icon(s3_client, icon_path)
 
 
 def main() -> None:
