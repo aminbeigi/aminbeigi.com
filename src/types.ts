@@ -3,4 +3,4 @@ export interface TBlogPost {
     title: string;
     date: string;
     content: string;
-};
+}

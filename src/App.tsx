@@ -21,7 +21,6 @@ function printCoolMessageToConsole(): void {
 
 printCoolMessageToConsole();
 
-
 function App() {
     return (
         <BrowserRouter>

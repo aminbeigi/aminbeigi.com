@@ -18,13 +18,12 @@ This repository hosts the source code for my personal website and blog,
 
 The website is built using React, Typescript, Tailwind CSS and Vite.
 
-
 ## ⚙️ Requirements
 
--   Node.js (v20.16.0+)
--   npm
--   Python (v3.10+)
--   Git
+- Node.js (v20.16.0+)
+- npm
+- Python (v3.10+)
+- Git
 
 ## 🛠️ Installation and Setup
 
@@ -48,8 +47,6 @@ npm run dev
 ```
 
 Your app should now be running at `http://localhost:3000`.
-
-
 
 ## 🎯 Contributions
 

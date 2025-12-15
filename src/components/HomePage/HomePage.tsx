@@ -14,7 +14,7 @@ function HomePage() {
                 </div>
 
                 <div className="mb-8">
-                    <RandomFacts/>
+                    <RandomFacts />
                 </div>
 
                 <div className="mb-8">
