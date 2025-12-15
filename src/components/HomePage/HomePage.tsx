@@ -6,33 +6,18 @@ import WorkAndProjects from './WorkAndProjects';
 import RandomFacts from './RandomFacts';
 
 function HomePage() {
-    return (
-        <div className="text-primaryWhite p-8">
-            <div>
-                <div className="mb-8">
-                    <Header />
-                </div>
-
-                <div className="mb-8">
-                    <RandomFacts />
-                </div>
-
-                <div className="mb-8">
-                    <WorkAndProjects />
-                </div>
-
-                <div className="mb-8">
-                    <Skills />
-                </div>
-                <div className="mb-12">
-                    <Blog />
-                </div>
-                <div>
-                    <SocialLinks />
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <main className="text-primaryWhite p-8 space-y-8">
+      <Header />
+      <RandomFacts />
+      <WorkAndProjects />
+      <Skills />
+      <section className="pt-4">
+        <Blog />
+      </section>
+      <SocialLinks />
+    </main>
+  );
 }
 
 export default HomePage;
