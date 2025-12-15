@@ -49,34 +49,6 @@ npm run dev
 
 Your app should now be running at `http://localhost:3000`.
 
-## 🗂️ Scripts
-
-### `s3_upload` Script
-
-The `scripts/s3_upload` script is used to upload build files from the `dist` folder on your local machine to an AWS S3 bucket.
-
-### 🛠️ ️ How to Run
-
-1. Configure Environment Variables
-
-Before running the script, you need to set up the environment variables.
-
-Copy the `.env.template` file to a new file called `.env`:
-
-```
-cp .env.template .env
-```
-
-The `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables
-provide the necessary credentials and configurations for the AWS SDK to connect
-to your S3 bucket.
-
-2. Run the Script
-
-```bash
-npm run upload_s3
-```
-
 
 
 ## 🎯 Contributions

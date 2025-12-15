@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "upload_s3": "cd scripts/s3_upload && poetry install && poetry run python -m src.main"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.15",
