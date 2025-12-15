@@ -21,9 +21,8 @@ The website is built using React, Typescript, Tailwind CSS and Vite.
 ## ⚙️ Requirements
 
 - Node.js (v20.16.0+)
-- npm
-- Python (v3.10+)
-- Git
+- npm (v10.8.1+)
+- Git (for version control and precommit hooks)
 
 ## 🛠️ Installation and Setup
 
