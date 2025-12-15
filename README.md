@@ -13,14 +13,62 @@
 
 ## Description
 
-This repository hosts the source code for my personal website and blog,
-[aminbeigi.com](http://aminbeigi.com/).
+This repository hosts the source code for my personal website and blog ->
+http://aminbeigi.com.
 
 ## ️Requirements
 
 - Node.js (v20.16.0+)
 - npm (v10.8.1+)
 - Git (for version control and precommit hooks)
+
+## Installation and Setup
+
+1. Clone the repository:
+
+```
+git clone https://github.com/aminbeigi/aminbeigi.com
+cd aminbeigi.com
+```
+
+2. Install dependencies:
+
+```
+npm install
+```
+
+3. Start the development server:
+
+```
+npm run dev
+```
+
+Your app should now be running at `http://localhost:5173`.
+
+## Running the Tests
+
+```
+npm run test
+```
+
+## Deployment
+
+```
+npm run build
+```
+
+This creates an optimised production build in the `dist/` folder:
+
+```
+dist/
+├── index.html          # Main HTML file
+├── assets/
+│   ├── index-[hash].css  # Compiled and minified CSS
+│   └── index-[hash].js   # Compiled and minified JavaScript
+└── [other assets]      # Images, fonts, etc.
+```
+
+Upload the `dist/` folder to your web server or hosting service.
 
 ## Built With
 
@@ -46,33 +94,14 @@ This repository hosts the source code for my personal website and blog,
 - [Husky](https://typicode.github.io/husky/) - Git hooks for automated code quality checks
 - [lint-staged](https://github.com/okonet/lint-staged) - Run linters on staged files
 
-## Installation and Setup
-
-1. Clone the repository:
-
-```
-git clone https://github.com/aminbeigi/aminbeigi.com
-cd aminbeigi.com
-```
-
-2. Install dependencies:
-
-```
-npm install
-```
-
-3. Start the development server:
-
-```
-npm run dev
-```
-
-Your app should now be running at `http://localhost:5173`.
-
 ## Contributions
 
 Contributions are always welcome!  
 Just make a [pull request](../../pulls).
+
+## Authors
+
+- Amin Beigi
 
 ## License
 
