@@ -1,32 +1,45 @@
 import { Link, useLocation } from 'react-router-dom';
 
 function NavBar() {
-    const location = useLocation();
+  const location = useLocation();
 
-    return (
-        <nav className="flex justify-center space-x-12 text-xl">
-            <Link
-                to="/"
-                className={`hover:underline decoration-2 underline-offset-4 ${
-                    location.pathname === '/'
-                        ? '!text-accentPurple underline decoration-2 underline-offset-4'
-                        : 'text-textGrey hover:!text-accentPurple'
-                }`}
-            >
-                home
-            </Link>
-            <Link
-                to="/blog"
-                className={`hover:underline decoration-2 underline-offset-4 ${
-                    location.pathname.includes('/blog')
-                        ? '!text-accentPurple underline decoration-2 underline-offset-4'
-                        : 'text-textGrey hover:!text-accentPurple'
-                }`}
-            >
-                blog
-            </Link>
-        </nav>
-    );
+  const navLinks = [
+    { path: '/', label: 'home', isActive: location.pathname === '/' },
+    {
+      path: '/blog',
+      label: 'blog',
+      isActive: location.pathname.includes('/blog'),
+    },
+  ];
+
+  const getLinkClassName = (isActive: boolean) => {
+    const baseClasses =
+      'hover:underline decoration-2 underline-offset-4 transition-colors';
+    const activeClasses =
+      'text-accentPurple underline decoration-2 underline-offset-4';
+    const inactiveClasses = 'text-textGrey hover:text-accentPurple';
+
+    return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
+  };
+
+  return (
+    <nav
+      className="flex justify-center space-x-12 text-xl mb-8"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      {navLinks.map(({ path, label, isActive }) => (
+        <Link
+          key={path}
+          to={path}
+          className={getLinkClassName(isActive)}
+          aria-current={isActive ? 'page' : undefined}
+        >
+          {label}
+        </Link>
+      ))}
+    </nav>
+  );
 }
 
 export default NavBar;
