@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@source "./index.html";
+@source "./src/**/*.{js,ts,jsx,tsx}";
+
+@theme {
+  --color-background-black: #0a0a0a;
+  --color-primary-white: #e5e5e5;
+  --color-text-grey: #9ca3af;
+  --color-accent-purple: #8b5cf6;
+}
+
+@plugin "@tailwindcss/typography";
 
 /* Hide scrollbar for Webkit browsers (Chrome, Safari, etc.) */
 ::-webkit-scrollbar {

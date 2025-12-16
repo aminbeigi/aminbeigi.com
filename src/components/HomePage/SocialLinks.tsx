@@ -28,7 +28,7 @@ function SocialLinks() {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 text-blue-500 hover:text-accentPurple"
+            className="flex items-center space-x-2 text-blue-500 hover:text-accent-purple"
           >
             <span className="text-3xl">{link.icon}</span>
             <span className="font-medium">{link.label}</span>

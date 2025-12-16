@@ -16,8 +16,8 @@ function NavBar() {
     const baseClasses =
       'hover:underline decoration-2 underline-offset-4 transition-colors';
     const activeClasses =
-      'text-accentPurple underline decoration-2 underline-offset-4';
-    const inactiveClasses = 'text-textGrey hover:text-accentPurple';
+      'text-accent-purple underline decoration-2 underline-offset-4';
+    const inactiveClasses = 'text-text-grey hover:text-accent-purple';
 
     return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
   };

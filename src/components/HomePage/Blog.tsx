@@ -15,11 +15,11 @@ function BlogPost(props: TProps) {
       <li className="mb-2.5 flex flex-col">
         <Link
           to={`/blog/${props.slug}`}
-          className="text-blue-500 hover:underline hover:text-accentPurple"
+          className="text-blue-500 hover:underline hover:text-accent-purple"
         >
           {props.title.toLowerCase()}
         </Link>
-        <span className="text-textGrey">{props.date.toLowerCase()}</span>
+        <span className="text-text-grey">{props.date.toLowerCase()}</span>
       </li>
     </ul>
   );
@@ -48,7 +48,7 @@ function Blog() {
     return (
       <>
         <h2 className="text-xl font-medium mb-4">blog</h2>
-        <p className="text-textGrey">Loading posts...</p>
+        <p className="text-text-grey">Loading posts...</p>
       </>
     );
   }
@@ -66,7 +66,7 @@ function Blog() {
       ))}
       <Link
         to="/blog"
-        className="text-blue-500 hover:underline hover:text-accentPurple"
+        className="text-blue-500 hover:underline hover:text-accent-purple"
       >
         all posts →
       </Link>

@@ -6,23 +6,23 @@ import { PiPersonSimpleHike } from 'react-icons/pi';
 function RandomFacts() {
   const facts = [
     {
-      icon: <FiFeather className="text-accentPurple" />,
+      icon: <FiFeather className="text-accent-purple" />,
       text: 'im a minimalist',
     },
     {
-      icon: <GiChocolateBar className="text-accentPurple" />,
+      icon: <GiChocolateBar className="text-accent-purple" />,
       text: 'I fancy dark chocolate',
     },
     {
-      icon: <FiBookOpen className="text-accentPurple" />,
+      icon: <FiBookOpen className="text-accent-purple" />,
       text: 'I enjoy reading books, especially philosophy',
     },
     {
-      icon: <PiPersonSimpleHike className="text-accentPurple" />,
+      icon: <PiPersonSimpleHike className="text-accent-purple" />,
       text: 'I like outdoors hiking',
     },
     {
-      icon: <FaMotorcycle className="text-accentPurple" />,
+      icon: <FaMotorcycle className="text-accent-purple" />,
       text: 'I ride motorcycles',
     },
   ];

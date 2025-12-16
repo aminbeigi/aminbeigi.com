@@ -39,7 +39,7 @@ function Skills() {
 
   return (
     <section>
-      <h2 className="text-xl font-medium mb-4 text-primaryWhite">skills</h2>
+      <h2 className="text-xl font-medium mb-4 text-primary-white">skills</h2>
       <div className="grid grid-cols-4 gap-6 justify-items-center">
         {skills.map((skill) => (
           <div

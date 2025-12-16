@@ -12,9 +12,9 @@ interface TPostProps {
 function Post({ date, title, slug }: TPostProps) {
   return (
     <div className="p-8 max-w-4xl w-full">
-      <div className="text-textGrey text-xl mb-2">{date}</div>
+      <div className="text-text-grey text-xl mb-2">{date}</div>
       <Link to={`/blog/${slug}`}>
-        <h1 className="text-blue-500 hover:underline hover:text-accentPurple text-4xl font-bold">
+        <h1 className="text-blue-500 hover:underline hover:text-accent-purple text-4xl font-bold">
           {title}
         </h1>
       </Link>
@@ -39,14 +39,14 @@ function BlogIndexPage() {
 
   if (isLoading) {
     return (
-      <div className="text-primaryWhite flex flex-col items-center">
+      <div className="text-primary-white flex flex-col items-center">
         <div>Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="text-primaryWhite flex flex-col items-center">
+    <div className="text-primary-white flex flex-col items-center">
       {blogPosts.map((blogPost: TBlogPost) => (
         <Post
           key={blogPost.id}

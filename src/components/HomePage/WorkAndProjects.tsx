@@ -51,8 +51,8 @@ function WorkAndProjects() {
         <h2 className="text-xl font-medium mb-4">work</h2>
         {workExperiences.map((work, index) => (
           <div key={index} className="mb-4">
-            <h3 className="font-medium text-accentPurple">{work.title}</h3>
-            <p className="text-textGrey italic mb-0.5">
+            <h3 className="font-medium text-accent-purple">{work.title}</h3>
+            <p className="text-text-grey italic mb-0.5">
               {work.role} ({work.time})
             </p>
             <p className="leading-relaxed">{work.description}</p>
@@ -67,11 +67,11 @@ function WorkAndProjects() {
               target="_blank"
               rel="noopener noreferrer"
               href={project.url}
-              className="text-blue-500 hover:underline hover:text-accentPurple"
+              className="text-blue-500 hover:underline hover:text-accent-purple"
             >
               <h3 className="font-medium">{project.title}</h3>
             </a>
-            <p className="text-textGrey italic mb-0.5">{project.role}</p>
+            <p className="text-text-grey italic mb-0.5">{project.role}</p>
             <p className="leading-relaxed">{project.description}</p>
           </div>
         ))}
@@ -79,7 +79,7 @@ function WorkAndProjects() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/aminbeigi"
-          className="text-blue-500 hover:underline hover:text-accentPurple"
+          className="text-blue-500 hover:underline hover:text-accent-purple"
         >
           all projects →
         </a>

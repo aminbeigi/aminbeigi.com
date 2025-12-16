@@ -44,7 +44,7 @@ function BlogPostPage() {
 
   if (isLoading) {
     return (
-      <section className="max-w-4xl mx-auto px-4 py-8 bg-backgroundBlack text-primaryWhite">
+      <section className="max-w-4xl mx-auto px-4 py-8 bg-background-black text-primary-white">
         <div>Loading...</div>
       </section>
     );
@@ -56,13 +56,13 @@ function BlogPostPage() {
 
   return (
     <section
-      className="max-w-4xl mx-auto px-4 py-8 bg-backgroundBlack text-primaryWhite"
+      className="max-w-4xl mx-auto px-4 py-8 bg-background-black text-primary-white"
       id="post-page"
     >
-      <h1 className="text-4xl font-bold text-primaryWhite mb-2">
+      <h1 className="text-4xl font-bold text-primary-white mb-2">
         {blogPost.title}
       </h1>
-      <p className="text-xl text-textGrey mb-6">{blogPost.date}</p>
+      <p className="text-xl text-text-grey mb-6">{blogPost.date}</p>
       <ReactMarkdown className="prose prose-lg prose-invert max-w-none leading-relaxed">
         {blogPost.content}
       </ReactMarkdown>
