@@ -13,9 +13,6 @@
     "format:check": "prettier --check .",
     "preview": "vite preview",
     "test": "vitest --config vitest.config.ts",
-    "test:run": "vitest run --config vitest.config.ts",
-    "test:ui": "vitest --ui --config vitest.config.ts",
-    "test:coverage": "vitest run --coverage --config vitest.config.ts",
     "prepare": "husky"
   },
   "dependencies": {
