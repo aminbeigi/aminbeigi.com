@@ -63,9 +63,9 @@ function BlogPostPage() {
         {blogPost.title}
       </h1>
       <p className="text-xl text-text-grey mb-6">{blogPost.date}</p>
-      <ReactMarkdown className="prose prose-lg prose-invert max-w-none leading-relaxed">
-        {blogPost.content}
-      </ReactMarkdown>
+      <div className="prose prose-lg prose-invert max-w-none leading-relaxed">
+        <ReactMarkdown>{blogPost.content}</ReactMarkdown>
+      </div>
     </section>
   );
 }
