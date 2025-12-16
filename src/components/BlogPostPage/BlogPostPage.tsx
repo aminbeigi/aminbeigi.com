@@ -1,5 +1,7 @@
 import ReactMarkdown from 'react-markdown';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
 import 'highlight.js/styles/github.css';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -13,6 +15,10 @@ function BlogPostPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Register only the languages you need
+    hljs.registerLanguage('javascript', javascript);
+    hljs.registerLanguage('typescript', typescript);
+
     async function loadPost() {
       if (!slug) {
         navigate('/blog');
