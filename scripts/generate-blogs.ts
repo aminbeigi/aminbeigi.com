@@ -6,7 +6,29 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-function convertTitleToSlug(title) {
+interface Frontmatter {
+  title?: string;
+  date?: string;
+  created?: string;
+  [key: string]: string | undefined;
+}
+
+interface BlogPost {
+  title: string;
+  date: string;
+  content: string;
+}
+
+interface BlogsData {
+  [slug: string]: BlogPost;
+}
+
+interface FrontmatterResult {
+  frontmatter: Frontmatter;
+  content: string;
+}
+
+function convertTitleToSlug(title: string): string {
   return title
     .toLowerCase()
     .trim()
@@ -14,15 +36,15 @@ function convertTitleToSlug(title) {
     .replace(/^-+|-+$/g, '');
 }
 
-function extractFrontmatter(content) {
+function extractFrontmatter(content: string): FrontmatterResult {
   const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
 
   if (match) {
-    const frontmatter = {};
+    const frontmatter: Frontmatter = {};
     const frontmatterLines = match[1].split('\n');
 
-    frontmatterLines.forEach((line) => {
+    frontmatterLines.forEach((line: string) => {
       const colonIndex = line.indexOf(':');
       if (colonIndex > -1) {
         const key = line.substring(0, colonIndex).trim();
@@ -46,15 +68,17 @@ function extractFrontmatter(content) {
   };
 }
 
-function generateBlogsJson() {
+function generateBlogsJson(): void {
   const blogsDir = join(__dirname, '../data/blogs');
   const outputPath = join(__dirname, '../public/blogs.json');
 
   try {
-    const files = readdirSync(blogsDir).filter((file) => file.endsWith('.md'));
-    const blogsData = {};
+    const files = readdirSync(blogsDir).filter((file: string) =>
+      file.endsWith('.md')
+    );
+    const blogsData: BlogsData = {};
 
-    files.forEach((file) => {
+    files.forEach((file: string) => {
       const fullPath = join(blogsDir, file);
       const rawContent = readFileSync(fullPath, 'utf8');
       const { frontmatter, content } = extractFrontmatter(rawContent);
@@ -81,7 +105,7 @@ function generateBlogsJson() {
     });
 
     // Convert back to object with sorted order
-    const sortedBlogsData = {};
+    const sortedBlogsData: BlogsData = {};
     sortedEntries.forEach(([slug, post]) => {
       sortedBlogsData[slug] = post;
     });
@@ -91,8 +115,9 @@ function generateBlogsJson() {
       `✅ Generated blogs.json with ${Object.keys(sortedBlogsData).length} posts`
     );
     console.log(`📁 Output: ${outputPath}`);
-  } catch (error) {
-    console.error('❌ Error generating blogs.json:', error.message);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('❌ Error generating blogs.json:', errorMessage);
     process.exit(1);
   }
 }
