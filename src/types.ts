@@ -1,6 +1,7 @@
 export interface TBlogPost {
-    id: number;
-    title: string;
-    date: string;
-    content: string;
+  id: number;
+  title: string;
+  date: string;
+  content: string;
+  slug: string;
 }

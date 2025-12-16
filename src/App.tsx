@@ -6,34 +6,34 @@ import Layout from './components/Layout/Layout';
 import BlogPostPage from './components/BlogPostPage/BlogPostPage';
 
 function printCoolMessageToConsole(): void {
-    const msg = '%c Hello 🕵️! Welcome to my site';
-    const styles = [
-        'font-size: 12px',
-        'font-family: monospace',
-        'background: white',
-        'display: inline-block',
-        'color: black',
-        'padding: 8px 19px',
-        'border: 1px dashed;'
-    ].join(';');
-    console.log(msg, styles);
+  const msg = '%c Hello 🕵️! Welcome to my site';
+  const styles = [
+    'font-size: 12px',
+    'font-family: monospace',
+    'background: white',
+    'display: inline-block',
+    'color: black',
+    'padding: 8px 19px',
+    'border: 1px dashed;',
+  ].join(';');
+  console.log(msg, styles);
 }
 
 printCoolMessageToConsole();
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<HomePage />} />
-                    <Route path="/blog" element={<BlogIndexPage />} />
-                    <Route path="/blog/:id" element={<BlogPostPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:id" element={<BlogPostPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

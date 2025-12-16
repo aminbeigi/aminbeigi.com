@@ -1,42 +1,67 @@
 import ReactMarkdown from 'react-markdown';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { findPostBySlug } from '../../utils';
+import { findPostBySlug } from '../../blog-utils';
+import type { TBlogPost } from '../../types';
 
 function BlogPostPage() {
-    const navigate = useNavigate();
-    const { id: slug } = useParams<{ id?: string }>();
-    const blogPost = findPostBySlug(slug ?? '');
+  const navigate = useNavigate();
+  const { id: slug } = useParams<{ id?: string }>();
+  const [blogPost, setBlogPost] = useState<TBlogPost | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        // if we don't find a blog post go to the index page
-        if (!blogPost) {
-            navigate('/blog');
-        }
+  useEffect(() => {
+    async function loadPost() {
+      if (!slug) {
+        navigate('/blog');
+        return;
+      }
 
-        hljs.highlightAll();
-    }, [blogPost, navigate]);
+      setIsLoading(true);
+      const post = await findPostBySlug(slug);
+      setBlogPost(post);
+      setIsLoading(false);
 
-    if (!blogPost) {
-        return null;
+      // if we don't find a blog post go to the index page
+      if (!post) {
+        navigate('/blog');
+        return;
+      }
+
+      hljs.highlightAll();
     }
 
+    loadPost();
+  }, [slug, navigate]);
+
+  if (isLoading) {
     return (
-        <section
-            className="max-w-4xl mx-auto px-4 py-8 bg-backgroundBlack text-primaryWhite"
-            id="post-page"
-        >
-            <h1 className="text-4xl font-bold text-primaryWhite mb-2">
-                {blogPost.title}
-            </h1>
-            <p className="text-xl text-textGrey mb-6">{blogPost.date}</p>
-            <ReactMarkdown className="prose prose-lg prose-invert max-w-none leading-relaxed">
-                {blogPost.content}
-            </ReactMarkdown>
-        </section>
+      <section className="max-w-4xl mx-auto px-4 py-8 bg-backgroundBlack text-primaryWhite">
+        <div>Loading...</div>
+      </section>
     );
+  }
+
+  if (!blogPost) {
+    return null;
+  }
+
+  return (
+    <section
+      className="max-w-4xl mx-auto px-4 py-8 bg-backgroundBlack text-primaryWhite"
+      id="post-page"
+    >
+      <h1 className="text-4xl font-bold text-primaryWhite mb-2">
+        {blogPost.title}
+      </h1>
+      <p className="text-xl text-textGrey mb-6">{blogPost.date}</p>
+      <ReactMarkdown className="prose prose-lg prose-invert max-w-none leading-relaxed">
+        {blogPost.content}
+      </ReactMarkdown>
+    </section>
+  );
 }
 
 export default BlogPostPage;

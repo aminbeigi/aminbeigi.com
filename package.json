@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npm run generate:blogs && vite",
+    "build": "npm run generate:blogs && tsc -b && vite build",
+    "generate:blogs": "node scripts/generate-blogs.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
