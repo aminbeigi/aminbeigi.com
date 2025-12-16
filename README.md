@@ -18,8 +18,8 @@ http://aminbeigi.com.
 
 ## ️Requirements
 
-- Node.js (v20.16.0+)
-- npm (v10.8.1+)
+- Node.js (v24.12.0+)
+- npm (v11.6.2+)
 - Git (for version control and precommit hooks)
 
 ## Installation and Setup
