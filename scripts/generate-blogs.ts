@@ -110,7 +110,7 @@ function generateBlogsJson(): void {
       sortedBlogsData[slug] = post;
     });
 
-    writeFileSync(outputPath, JSON.stringify(sortedBlogsData, null, 2));
+    writeFileSync(outputPath, JSON.stringify(sortedBlogsData, null, 2) + '\n');
     console.log(
       `✅ Generated blogs.json with ${Object.keys(sortedBlogsData).length} posts`
     );
