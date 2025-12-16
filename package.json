@@ -42,7 +42,6 @@
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "react-router-dom": "^6.26.2",
-    "rollup-plugin-visualizer": "^6.0.5",
     "tailwindcss": "^4.1.18",
     "tsx": "^4.21.0",
     "typescript": "^5.5.3",
