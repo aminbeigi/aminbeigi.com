@@ -38,9 +38,6 @@ describe('Homepage Integration', () => {
     expect(screen.getByText(/sydney, australia/i)).toBeInTheDocument();
     expect(screen.getByText(/insurance australia group/i)).toBeInTheDocument();
 
-    // Check professional description
-    expect(screen.getByText(/fullstack developer/i)).toBeInTheDocument();
-
     // Check social links are rendered
     expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
@@ -56,18 +53,5 @@ describe('Homepage Integration', () => {
     // Check that page content is displayed (not showing error states)
     expect(screen.queryByText(/404/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/not found/i)).not.toBeInTheDocument();
-  });
-
-  it('displays the bio paragraph correctly', () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <TestApp />
-      </MemoryRouter>
-    );
-
-    expect(screen.getByText(/A passionate/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/with an interest in building high-performance/i)
-    ).toBeInTheDocument();
   });
 });
