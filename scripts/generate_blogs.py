@@ -10,7 +10,6 @@ import sys
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_FILE_PATH = SCRIPT_DIR.parent / "public" / "blogs.json"
 INPUT_BLOGS_MARKDOWN_DIR_PATH = SCRIPT_DIR.parent / "data" / "blogs"
-FRONT_MATTER_REGEX_PATTERN = r"^---\n(.*?)\n---\n(.*)$"
 
 
 def setup_logger() -> logging.Logger:
@@ -32,7 +31,8 @@ class BlogPost(TypedDict):
 
 def extract_frontmatter_and_body(content: str) -> tuple[str, str, str]:
     """Extract YAML-style frontmatter and body content from markdown."""
-    match = re.match(FRONT_MATTER_REGEX_PATTERN, content, re.DOTALL)
+    front_matter_regex_pattern = r"^---\n(.*?)\n---\n(.*)$"
+    match = re.match(front_matter_regex_pattern, content, re.DOTALL)
     if not match:
         raise ValueError("no frontmatter found in markdown file")
 
