@@ -8,6 +8,7 @@ import sys
 
 # Use __file__ for reliable paths regardless of where script is run from
 SCRIPT_DIR = Path(__file__).resolve().parent
+print(SCRIPT_DIR)
 OUTPUT_FILE_PATH = SCRIPT_DIR.parent / "public" / "blogs.json"
 INPUT_BLOGS_MARKDOWN_DIR_PATH = SCRIPT_DIR.parent / "data" / "blogs"
 
@@ -61,11 +62,7 @@ def convert_title_to_slug(title: str) -> str:
 
 def parse_date(date_str: str) -> datetime:
     """Parse date string to datetime for sorting."""
-    try:
-        return datetime.strptime(date_str, "%Y-%m-%d")
-    except ValueError:
-        # Fallback for different date formats
-        return datetime.min
+    return datetime.strptime(date_str, "%b %d, %Y")
 
 
 def main() -> int:
@@ -87,7 +84,6 @@ def main() -> int:
             content = file_path.read_text(encoding="utf-8")
             title, date, body = extract_frontmatter_and_body(content)
             slug = convert_title_to_slug(title)
-
             blogs_data[slug] = BlogPost(title=title, date=date, content=body)
 
         # sort by date (newest first)
