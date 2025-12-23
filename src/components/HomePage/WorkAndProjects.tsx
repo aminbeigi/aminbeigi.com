@@ -2,10 +2,10 @@ function WorkAndProjects() {
   const workExperiences = [
     {
       title: 'iag',
-      role: 'devops stuff',
+      role: 'platform engineer',
       time: '2025 - present',
       description:
-        'just started! note to self: update this with all the cool stuff later',
+        'building tooling to reduces operation toil and to improve observabiltiy',
     },
     {
       title: 'atlassian',

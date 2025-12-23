@@ -19,14 +19,14 @@ function Header() {
       </div>
 
       <p className="text-primary-white">
-        A passionate{' '}
+        a{' '}
         <span className="text-accent-purple font-medium">
-          fullstack developer
+          software engineer
         </span>{' '}
-        with an interest in building high-performance, scalable systems with
-        sleek, intuitive and user-friendly frontend interfaces. I work with
-        modern technologies and especially enjoy building things with
-        JavaScript.
+        with a focus on building and managing scalable and reliable systems.
+        Experienced in applying software engineering principles to
+        infrastructure. I have a strong interest in networking, operating
+        systems and system-level behaviour in production environments.
       </p>
     </header>
   );

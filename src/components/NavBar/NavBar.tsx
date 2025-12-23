@@ -24,7 +24,7 @@ function NavBar() {
 
   return (
     <nav
-      className="flex justify-center space-x-12 text-xl mb-8"
+      className="flex justify-center space-x-12 text-xl"
       role="navigation"
       aria-label="Main navigation"
     >

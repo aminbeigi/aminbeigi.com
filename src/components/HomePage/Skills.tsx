@@ -1,39 +1,45 @@
-import { FaJsSquare, FaReact, FaNode } from 'react-icons/fa';
+import { FaPython, FaAws, FaGithub } from 'react-icons/fa';
 import {
-  SiTypescript,
-  SiTailwindcss,
-  SiExpress,
+  SiLinux,
   SiPostgresql,
-  SiNextdotjs,
+  SiDocker,
+  SiKubernetes,
+  SiDatadog,
 } from 'react-icons/si';
 
 function Skills() {
   const skills = [
     {
-      name: 'JavaScript',
-      icon: <FaJsSquare className="text-7xl text-yellow-500" />,
+      name: 'Python',
+      icon: <FaPython className="text-7xl text-yellow-500" />,
     },
     {
-      name: 'TypeScript',
-      icon: <SiTypescript className="text-6xl text-blue-500" />,
+      name: 'Linux',
+      icon: <SiLinux className="text-7xl text-gray-300" />,
     },
-    { name: 'React', icon: <FaReact className="text-7xl text-blue-400" /> },
     {
-      name: 'Tailwind CSS',
-      icon: <SiTailwindcss className="text-7xl text-teal-400" />,
+      name: 'GitHub',
+      icon: <FaGithub className="text-7xl text-gray-300" />,
     },
-    { name: 'Node.js', icon: <FaNode className="text-7xl text-green-500" /> },
     {
-      name: 'Express.js',
-      icon: <SiExpress className="text-7xl text-gray-500" />,
+      name: 'AWS',
+      icon: <FaAws className="text-7xl text-orange-500" />,
+    },
+    {
+      name: 'Docker',
+      icon: <SiDocker className="text-7xl text-blue-500" />,
+    },
+    {
+      name: 'Kubernetes',
+      icon: <SiKubernetes className="text-7xl text-blue-600" />,
     },
     {
       name: 'PostgreSQL',
       icon: <SiPostgresql className="text-7xl text-blue-600" />,
     },
     {
-      name: 'Next.js',
-      icon: <SiNextdotjs className="text-7xl text-green-600" />,
+      name: 'Datadog',
+      icon: <SiDatadog className="text-7xl text-purple-600" />,
     },
   ];
 
