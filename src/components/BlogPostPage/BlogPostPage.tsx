@@ -1,6 +1,5 @@
 import ReactMarkdown from 'react-markdown';
 import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
 import 'highlight.js/styles/github.css';
 import { useEffect, useState } from 'react';
@@ -16,9 +15,10 @@ function BlogPostPage() {
 
   useEffect(() => {
     // Register only the languages you need
-    hljs.registerLanguage('javascript', javascript);
     hljs.registerLanguage('typescript', typescript);
+  }, []);
 
+  useEffect(() => {
     async function loadPost() {
       if (!slug) {
         navigate('/blog');
@@ -35,12 +35,17 @@ function BlogPostPage() {
         navigate('/blog');
         return;
       }
-
-      hljs.highlightAll();
     }
 
     loadPost();
   }, [slug, navigate]);
+
+  useEffect(() => {
+    if (blogPost && !isLoading) {
+      // Highlight code blocks after content is rendered
+      hljs.highlightAll();
+    }
+  }, [blogPost, isLoading]);
 
   if (isLoading) {
     return (
@@ -63,6 +68,17 @@ function BlogPostPage() {
         {blogPost.title}
       </h1>
       <p className="text-xl text-text-grey mb-6">{blogPost.date}</p>
+      <style>
+        {`
+          #post-page pre {
+            border: none !important;
+            background-color: #ffffffff !important;
+          }
+          #post-page code {
+            border: none !important;
+          }
+        `}
+      </style>
       <div className="prose prose-lg prose-invert max-w-none leading-relaxed">
         <ReactMarkdown>{blogPost.content}</ReactMarkdown>
       </div>
