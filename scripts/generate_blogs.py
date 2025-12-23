@@ -65,23 +65,32 @@ def parse_date(date_str: str) -> datetime:
 
 
 def validate_paths() -> None:
+    """Validate input and output paths exist and are accessible."""
     if not INPUT_BLOGS_MARKDOWN_DIR_PATH.exists():
         raise FileNotFoundError(
             f"input dir path not found: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
         )
 
     if not INPUT_BLOGS_MARKDOWN_DIR_PATH.is_dir():
-        raise FileNotFoundError(
+        raise NotADirectoryError(
             f"input path is not a directory: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
+        )
+
+    output_parent = OUTPUT_FILE_PATH.parent
+    if not output_parent.exists():
+        raise FileNotFoundError(f"output parent directory not found: {output_parent}")
+
+    if not output_parent.is_dir():
+        raise NotADirectoryError(
+            f"output parent path is not a directory: {output_parent}"
         )
 
 
 def fetch_markdown_files() -> list[Path]:
+    """Fetch and validate all markdown files from input directory."""
     markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR_PATH.glob("*.md"))
     if not markdown_files:
-        raise FileNotFoundError(
-            f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
-        )
+        raise ValueError(f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}")
     return markdown_files
 
 
@@ -95,6 +104,10 @@ def main() -> int:
 
         blogs_data: dict[str, BlogPost] = {}
         for file_path in markdown_files:
+            # validate file is readable
+            if not file_path.is_file():
+                raise ValueError(f"not a valid file: {file_path}")
+
             content = file_path.read_text(encoding="utf-8")
             title, date, body = extract_frontmatter_and_body(content)
             slug = convert_title_to_slug(title)
@@ -116,7 +129,6 @@ def main() -> int:
 
         logger.info(f"generated blogs.json with {len(sorted_blogs)} posts")
         logger.info(f"output: {OUTPUT_FILE_PATH}")
-
         return 0
 
     except Exception as e:
