@@ -8,7 +8,6 @@ import sys
 
 # Use __file__ for reliable paths regardless of where script is run from
 SCRIPT_DIR = Path(__file__).resolve().parent
-print(SCRIPT_DIR)
 OUTPUT_FILE_PATH = SCRIPT_DIR.parent / "public" / "blogs.json"
 INPUT_BLOGS_MARKDOWN_DIR_PATH = SCRIPT_DIR.parent / "data" / "blogs"
 
@@ -65,19 +64,34 @@ def parse_date(date_str: str) -> datetime:
     return datetime.strptime(date_str, "%b %d, %Y")
 
 
+def validate_paths() -> None:
+    if not INPUT_BLOGS_MARKDOWN_DIR_PATH.exists():
+        raise FileNotFoundError(
+            f"input dir path not found: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
+        )
+
+    if not INPUT_BLOGS_MARKDOWN_DIR_PATH.is_dir():
+        raise FileNotFoundError(
+            f"input path is not a directory: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
+        )
+
+
+def fetch_markdown_files() -> list[Path]:
+    markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR_PATH.glob("*.md"))
+    if not markdown_files:
+        raise FileNotFoundError(
+            f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
+        )
+    return markdown_files
+
+
 def main() -> int:
     """Generate blogs.json from markdown files. Returns exit code."""
     logger = setup_logger()
 
     try:
-        if not INPUT_BLOGS_MARKDOWN_DIR_PATH.exists():
-            logger.error(f"blog directory not found: {INPUT_BLOGS_MARKDOWN_DIR_PATH}")
-            return 1
-
-        markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR_PATH.glob("*.md"))
-        if not markdown_files:
-            logger.error(f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}")
-            return 1
+        validate_paths()
+        markdown_files = fetch_markdown_files()
 
         blogs_data: dict[str, BlogPost] = {}
         for file_path in markdown_files:
