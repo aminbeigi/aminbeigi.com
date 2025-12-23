@@ -9,18 +9,19 @@ import sys
 # Use __file__ for reliable paths regardless of where script is run from
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_FILE_PATH = SCRIPT_DIR.parent / "public" / "blogs.json"
-INPUT_BLOGS_MARKDOWN_DIR = SCRIPT_DIR.parent / "data" / "blogs"
+INPUT_BLOGS_MARKDOWN_DIR_PATH = SCRIPT_DIR.parent / "data" / "blogs"
 FRONT_MATTER_REGEX_PATTERN = r"^---\n(.*?)\n---\n(.*)$"
 
 
-def setup_logger() -> None:
+def setup_logger() -> logging.Logger:
     """Configure basic logging to stdout."""
     logging.basicConfig(
         level=logging.INFO,
         format="[%(asctime)s] [%(levelname)s] - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
-        stream=sys.stdout
+        stream=sys.stdout,
     )
+    return logging.getLogger()
 
 
 class BlogPost(TypedDict):
@@ -29,21 +30,28 @@ class BlogPost(TypedDict):
     content: str
 
 
-def extract_frontmatter(content: str) -> tuple[dict[str, str], str]:
+def extract_frontmatter_and_body(content: str) -> tuple[str, str, str]:
     """Extract YAML-style frontmatter and body content from markdown."""
     match = re.match(FRONT_MATTER_REGEX_PATTERN, content, re.DOTALL)
     if not match:
-        raise ValueError("No frontmatter found in markdown file")
+        raise ValueError("no frontmatter found in markdown file")
+
+    lines = [line.strip() for line in match.group(1).split("\n")]
+    if len(lines) != 2:
+        raise ValueError(f"expected exactly 2 frontmatter fields, got {len(lines)}")
 
     frontmatter: dict[str, str] = {}
-    for line in match.group(1).split("\n"):
-        if ":" in line:
-            key, value = line.split(":", 1)
-            # strip quotes and whitespace from value
-            frontmatter[key.strip()] = value.strip().strip("'\"")
+    for line in lines:
+        key, value = line.split(":", 1)
+        frontmatter[key.strip()] = value.strip().strip("'\"")
+
+    if "title" not in frontmatter:
+        raise ValueError("missing required field 'title' in frontmatter")
+    if "date" not in frontmatter:
+        raise ValueError("missing required field 'date' in frontmatter")
 
     body = match.group(2).strip()
-    return frontmatter, body
+    return frontmatter["title"], frontmatter["date"], body
 
 
 def convert_title_to_slug(title: str) -> str:
@@ -62,28 +70,22 @@ def parse_date(date_str: str) -> datetime:
 
 def main() -> int:
     """Generate blogs.json from markdown files. Returns exit code."""
-    setup_logger()
-    
+    logger = setup_logger()
+
     try:
-        # validate input directory exists
-        if not INPUT_BLOGS_MARKDOWN_DIR.exists():
-            logging.error(f"Blog directory not found: {INPUT_BLOGS_MARKDOWN_DIR}")
+        if not INPUT_BLOGS_MARKDOWN_DIR_PATH.exists():
+            logger.error(f"blog directory not found: {INPUT_BLOGS_MARKDOWN_DIR_PATH}")
             return 1
 
-        # find all markdown files
-        markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR.glob("*.md"))
+        markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR_PATH.glob("*.md"))
         if not markdown_files:
-            logging.error(f"No markdown files found in {INPUT_BLOGS_MARKDOWN_DIR}")
+            logger.error(f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}")
             return 1
 
-        # process each markdown file
         blogs_data: dict[str, BlogPost] = {}
         for file_path in markdown_files:
             content = file_path.read_text(encoding="utf-8")
-            frontmatter, body = extract_frontmatter(content)
-
-            title = frontmatter.get("title", file_path.stem)
-            date = frontmatter.get("date") or frontmatter.get("created", "Unknown Date")
+            title, date, body = extract_frontmatter_and_body(content)
             slug = convert_title_to_slug(title)
 
             blogs_data[slug] = BlogPost(title=title, date=date, content=body)
@@ -102,13 +104,13 @@ def main() -> int:
         json_content = json.dumps(sorted_blogs, ensure_ascii=False, indent=2) + "\n"
         OUTPUT_FILE_PATH.write_text(json_content, encoding="utf-8")
 
-        logging.info(f"Generated blogs.json with {len(sorted_blogs)} posts")
-        logging.info(f"Output: {OUTPUT_FILE_PATH}")
-        
+        logger.info(f"generated blogs.json with {len(sorted_blogs)} posts")
+        logger.info(f"output: {OUTPUT_FILE_PATH}")
+
         return 0
-        
+
     except Exception as e:
-        logging.error(f"Error: {e}")
+        logger.error(f"error: {e}")
         return 1
 
 
