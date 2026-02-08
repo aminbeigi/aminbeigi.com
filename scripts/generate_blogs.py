@@ -16,8 +16,7 @@ def setup_logger() -> logging.Logger:
     """Configure basic logging to stdout."""
     logging.basicConfig(
         level=logging.INFO,
-        format="[%(asctime)s] [%(levelname)s] - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
+        format="%(asctime)s - %(levelname)-s - %(filename)s:%(lineno)d - %(message)s",
         stream=sys.stdout,
     )
     return logging.getLogger()
@@ -119,7 +118,9 @@ def main() -> int:
             content = file_path.read_text(encoding="utf-8")
             title, date, body = extract_frontmatter_and_body(content)
             slug = convert_title_to_slug(title)
-            blogs_data[slug] = BlogPost(title=title, created_date=format_display_date(date), content=body)
+            blogs_data[slug] = BlogPost(
+                title=title, created_date=format_display_date(date), content=body
+            )
 
         # sort by date (newest first)
         sorted_blogs = dict(
