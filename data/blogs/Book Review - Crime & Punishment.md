@@ -1,6 +1,6 @@
 ---
 title: Book Review - Crime & Punishment
-date: Dec 16, 2025
+date: 2025-12-16
 ---
 
 Crime & Punishment by [Fyodor Dostoevsky](https://en.wikipedia.org/wiki/Fyodor_Dostoevsky) is an absolutely incredible novel. I was captivated the entire time and was practically screaming during the intense parts. It's emotionally devastating, but also intellectually demanding, with a strong philosophical undertone.

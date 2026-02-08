@@ -1,6 +1,6 @@
 ---
-title: 'Functional Programming with TypeScript'
-date: 'Sep 16, 2024'
+title: Functional Programming with TypeScript
+date: 2024-09-16
 ---
 
 Functional programming (FP) focuses on creating code that is predictable, easy to understand and resilient to bugs. At its core, FP revolves around key principles such as immutability, pure functions and higher-order functions. In this article, we'll delve into these fundamental concepts and illustrate how we can refactor our code to embrace a FP style.

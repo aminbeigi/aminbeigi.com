@@ -67,7 +67,7 @@ function BlogPostPage() {
       <h1 className="text-4xl font-bold text-primary-white mb-2">
         {blogPost.title}
       </h1>
-      <p className="text-xl text-text-grey mb-6">{blogPost.date}</p>
+      <p className="text-xl text-text-grey mb-6">{blogPost.created_date}</p>
       <style>
         {`
           #post-page pre {

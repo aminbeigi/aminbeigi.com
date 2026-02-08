@@ -3,7 +3,7 @@ import type { TBlogPost } from './types';
 interface BlogsData {
   [slug: string]: {
     title: string;
-    date: string;
+    created_date: string;
     content: string;
   };
 }
@@ -36,7 +36,7 @@ export async function getBlogPosts(): Promise<TBlogPost[]> {
   blogPostsCache = Object.entries(blogsData).map(([slug, post], index) => ({
     id: index,
     title: post.title,
-    date: post.date,
+    created_date: post.created_date,
     content: post.content,
     slug,
   }));
@@ -53,7 +53,7 @@ export async function findPostBySlug(slug: string): Promise<TBlogPost | null> {
   return {
     id: 0, // ID not needed for single post
     title: post.title,
-    date: post.date,
+    created_date: post.created_date,
     content: post.content,
     slug,
   };
@@ -72,7 +72,7 @@ export function findPostBySlugSync(slug: string): TBlogPost | null {
   return {
     id: 0,
     title: post.title,
-    date: post.date,
+    created_date: post.created_date,
     content: post.content,
     slug,
   };

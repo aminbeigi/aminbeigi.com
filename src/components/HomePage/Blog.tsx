@@ -5,7 +5,7 @@ import { TBlogPost } from '../../types';
 
 interface TProps {
   title: string;
-  date: string;
+  created_date: string;
   slug: string;
 }
 
@@ -19,7 +19,9 @@ function BlogPost(props: TProps) {
         >
           {props.title.toLowerCase()}
         </Link>
-        <span className="text-text-grey">{props.date.toLowerCase()}</span>
+        <span className="text-text-grey">
+          {props.created_date.toLowerCase()}
+        </span>
       </li>
     </ul>
   );
@@ -60,7 +62,7 @@ function Blog() {
         <BlogPost
           key={blogPost.slug}
           title={blogPost.title}
-          date={blogPost.date}
+          created_date={blogPost.created_date}
           slug={blogPost.slug}
         />
       ))}
