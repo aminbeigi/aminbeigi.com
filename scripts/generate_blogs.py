@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import TypedDict
-from datetime import datetime
+from datetime import date, datetime
 import json
 import logging
 import re
@@ -25,7 +25,7 @@ def setup_logger() -> logging.Logger:
 
 class BlogPost(TypedDict):
     title: str
-    date: str
+    created_date: str
     content: str
 
 
@@ -59,9 +59,17 @@ def convert_title_to_slug(title: str) -> str:
     return re.sub(r"[\s\W-]+", "-", title.lower().strip()).strip("-")
 
 
-def parse_date(date_str: str) -> datetime:
-    """Parse date string to datetime for sorting."""
-    return datetime.strptime(date_str, "%b %d, %Y")
+def parse_date(date_str: str) -> date:
+    """Parse ISO or display date string for sorting."""
+    try:
+        return date.fromisoformat(date_str)
+    except ValueError:
+        return datetime.strptime(date_str, "%b %d, %Y").date()
+
+
+def format_display_date(date_str: str) -> str:
+    """Format an ISO date string for display in output JSON."""
+    return parse_date(date_str).strftime("%b %d, %Y")
 
 
 def validate_paths() -> None:
@@ -111,13 +119,13 @@ def main() -> int:
             content = file_path.read_text(encoding="utf-8")
             title, date, body = extract_frontmatter_and_body(content)
             slug = convert_title_to_slug(title)
-            blogs_data[slug] = BlogPost(title=title, date=date, content=body)
+            blogs_data[slug] = BlogPost(title=title, created_date=format_display_date(date), content=body)
 
         # sort by date (newest first)
         sorted_blogs = dict(
             sorted(
                 blogs_data.items(),
-                key=lambda item: parse_date(item[1]["date"]),
+                key=lambda item: parse_date(item[1]["created_date"]),
                 reverse=True,
             )
         )
