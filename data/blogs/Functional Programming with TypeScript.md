@@ -3,7 +3,7 @@ title: 'Functional Programming with TypeScript'
 date: 'Sep 16, 2024'
 ---
 
-Functional programming (FP) focuses on creating code that is predictable, easy to understand, and resilient to bugs. At its core, FP revolves around key principles such as immutability, pure functions, and higher-order functions. In this article, we'll delve into these fundamental concepts and illustrate how we can refactor our code to embrace a FP style.
+Functional programming (FP) focuses on creating code that is predictable, easy to understand and resilient to bugs. At its core, FP revolves around key principles such as immutability, pure functions and higher-order functions. In this article, we'll delve into these fundamental concepts and illustrate how we can refactor our code to embrace a FP style.
 
 ## Immutability
 
@@ -17,7 +17,7 @@ const newNumbers = [...numbers, 4]; // create a new array with an added element
 newNumbers; // [1, 2, 3, 4]
 ```
 
-In this example, the original `numbers` array remains unchanged. Instead, we use the spread operator to create a new array, which maintains immutability.
+The original `numbers` array remains unchanged. Instead, we use the spread operator to create a new array, which maintains immutability.
 
 ## Pure Functions
 
@@ -34,7 +34,7 @@ No matter how many times you call `add` with the same arguments, it always retur
 
 ## First-Class Functions
 
-In TypeScript, functions are first-class citizens. This means you can treat functions like any other value - they can be passed as arguments, returned from other functions, and assigned to variables.
+In TypeScript, functions are first-class citizens. This means you can treat functions like any other value - they can be passed as arguments, returned from other functions and assigned to variables.
 
 ```ts
 // function that takes another function as an argument
@@ -48,7 +48,7 @@ const result = applyFunction(5, square);
 result; // 25
 ```
 
-Here, `applyFunction` demonstrates how functions can be passed around and applied in different contexts.
+`applyFunction` demonstrates how functions can be passed around and applied in different contexts.
 
 ## Higher-Order Functions
 
@@ -82,7 +82,7 @@ Here, `compose` creates a new function `doubleThenIncrement` by combining `doubl
 
 ## Refactoring to Functional Programming Style
 
-Suppose we have an array of transactions, and we want to perform a series of transformations on this data. The transformations are:
+Suppose we have an array of transactions and we want to perform a series of transformations on this data. The transformations are:
 
 1. Filter transactions that are completed.
 2. Calculate the total amount for each transaction.
@@ -172,4 +172,4 @@ In this refactored code, we use function composition to chain our operations in 
 
 ## Final Reflection
 
-Adopting functional programming principles in TypeScript can significantly enhance your code’s clarity and reliability. Though at the end of the day, creativity is your most important tool. Use these principles to enhance your coding, and let your creativity drive innovative solutions.
+Adopting functional programming principles in TypeScript can sharpen code reliability and maintainability. Ultimately, creativity remains your most important tool - use these principles to guide your design and let creativity drive innovative solutions.
