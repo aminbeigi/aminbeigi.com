@@ -25,8 +25,8 @@ function Header() {
         </span>{' '}
         with a focus on building and managing scalable and reliable systems.
         Experienced in applying software engineering principles to
-        infrastructure. I have a strong interest in networking, operating
-        systems and system-level behaviour in production environments.
+        infrastructure. I have a strong interest in networking, linux and
+        system-level behaviour in production environments.
       </p>
     </header>
   );
