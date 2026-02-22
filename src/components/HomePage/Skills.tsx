@@ -7,39 +7,41 @@ import {
   SiDatadog,
 } from 'react-icons/si';
 
+const ICON_COLOR_CLASS = 'text-gray-400';
+
 function Skills() {
   const skills = [
     {
       name: 'Python',
-      icon: <FaPython className="text-7xl text-yellow-500" />,
+      icon: <FaPython className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'Linux',
-      icon: <SiLinux className="text-7xl text-gray-300" />,
+      icon: <SiLinux className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'GitHub',
-      icon: <FaGithub className="text-7xl text-gray-300" />,
+      icon: <FaGithub className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'AWS',
-      icon: <FaAws className="text-7xl text-orange-500" />,
+      icon: <FaAws className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'Docker',
-      icon: <SiDocker className="text-7xl text-blue-500" />,
+      icon: <SiDocker className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'Kubernetes',
-      icon: <SiKubernetes className="text-7xl text-blue-600" />,
+      icon: <SiKubernetes className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'PostgreSQL',
-      icon: <SiPostgresql className="text-7xl text-blue-600" />,
+      icon: <SiPostgresql className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
     {
       name: 'Datadog',
-      icon: <SiDatadog className="text-7xl text-purple-600" />,
+      icon: <SiDatadog className={`text-7xl ${ICON_COLOR_CLASS}`} />,
     },
   ];
 
