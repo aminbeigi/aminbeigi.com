@@ -27,16 +27,16 @@ def main() -> int:
         bucket_name = os.environ["AWS_S3_BUCKET_NAME"]
         dist_dir = Path(__file__).resolve().parent.parent / "dist"
 
-        for file_path in dist_dir.rglob("*"):
-            if not file_path.is_file():
-                continue
+        files = [object for object in dist_dir.rglob("*") if not object.is_dir()]
+
+        for index, file_path in enumerate(files):
             s3_key = file_path.relative_to(dist_dir).as_posix()
             content_type, _ = mimetypes.guess_type(str(file_path))
             extra_args = {}
             if content_type:
                 extra_args["ContentType"] = content_type
             s3.upload_file(str(file_path), bucket_name, s3_key, ExtraArgs=extra_args)
-            logger.info(f"uploaded {s3_key}")
+            logger.info(f"[{index + 1}/{len(files)}] uploaded {s3_key}")
         logger.info("successfully uploaded all files")
         return 0
     except Exception as e:
