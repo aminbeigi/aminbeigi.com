@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 
 CLIENT_TYPE = "s3"
 REGION_NAME = "ap-southeast-2"
+DIST_DIR_NAME = "dist"
 
 
 def main() -> int:
@@ -25,7 +26,7 @@ def main() -> int:
         )
 
         bucket_name = os.environ["AWS_S3_BUCKET_NAME"]
-        dist_dir = Path(__file__).resolve().parent.parent / "dist"
+        dist_dir = Path(__file__).resolve().parent.parent / DIST_DIR_NAME
 
         files = [object for object in dist_dir.rglob("*") if not object.is_dir()]
 
