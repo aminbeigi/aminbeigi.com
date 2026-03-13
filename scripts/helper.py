@@ -3,6 +3,7 @@ import logging
 import inspect
 import sys
 
+
 def setup_logger() -> logging.Logger:
     """Configure basic logging to stdout."""
     logging.basicConfig(
@@ -11,6 +12,7 @@ def setup_logger() -> logging.Logger:
         stream=sys.stdout,
     )
     return logging.getLogger()
+
 
 def generate_app_start_message() -> str:
     frame = inspect.stack()[1]

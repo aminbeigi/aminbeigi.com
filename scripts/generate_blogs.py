@@ -2,7 +2,6 @@ from pathlib import Path
 from typing import TypedDict
 from datetime import date, datetime
 import json
-import logging
 import re
 import sys
 from helper import setup_logger, generate_app_start_message
@@ -128,7 +127,9 @@ def main() -> int:
         json_content = json.dumps(sorted_blogs, ensure_ascii=False, indent=2) + "\n"
         OUTPUT_FILE_PATH.write_text(json_content, encoding="utf-8")
 
-        logger.info(f"successfully generated blogs.json with {len(sorted_blogs)} posts in output {OUTPUT_FILE_PATH}")
+        logger.info(
+            f"successfully generated blogs.json with {len(sorted_blogs)} posts in output {OUTPUT_FILE_PATH}"
+        )
         return 0
 
     except Exception as e:
