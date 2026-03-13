@@ -5,16 +5,4 @@ import tailwindcss from '@tailwindcss/vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          markdown: ['react-markdown'],
-          highlighting: ['highlight.js'],
-        },
-      },
-    },
-  },
 });
