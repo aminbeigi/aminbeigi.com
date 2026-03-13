@@ -5,21 +5,12 @@ import json
 import logging
 import re
 import sys
+from helper import setup_logger, generate_app_start_message
 
 # Use __file__ for reliable paths regardless of where script is run from
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_FILE_PATH = SCRIPT_DIR.parent / "public" / "blogs.json"
 INPUT_BLOGS_MARKDOWN_DIR_PATH = SCRIPT_DIR.parent / "data" / "blogs"
-
-
-def setup_logger() -> logging.Logger:
-    """Configure basic logging to stdout."""
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)-s - %(filename)s:%(lineno)d - %(message)s",
-        stream=sys.stdout,
-    )
-    return logging.getLogger()
 
 
 class BlogPost(TypedDict):
@@ -103,9 +94,10 @@ def fetch_markdown_files() -> list[Path]:
 
 def main() -> int:
     """Generate blogs.json from markdown files. Returns exit code."""
-    logger = setup_logger()
 
     try:
+        logger = setup_logger()
+        logger.info(generate_app_start_message())
         validate_paths()
         markdown_files = fetch_markdown_files()
 
@@ -136,12 +128,11 @@ def main() -> int:
         json_content = json.dumps(sorted_blogs, ensure_ascii=False, indent=2) + "\n"
         OUTPUT_FILE_PATH.write_text(json_content, encoding="utf-8")
 
-        logger.info(f"generated blogs.json with {len(sorted_blogs)} posts")
-        logger.info(f"output: {OUTPUT_FILE_PATH}")
+        logger.info(f"successfully generated blogs.json with {len(sorted_blogs)} posts in output {OUTPUT_FILE_PATH}")
         return 0
 
     except Exception as e:
-        logger.error(f"error: {e}")
+        logger.error(f"an unexpected error has occured: {e}")
         return 1
 
 

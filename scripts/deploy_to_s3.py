@@ -37,7 +37,7 @@ def main() -> int:
                 extra_args["ContentType"] = content_type
             s3.upload_file(str(file_path), bucket_name, s3_key, ExtraArgs=extra_args)
             logger.info(f"uploaded {s3_key}")
-        logger.info("uploaded all files successfully")
+        logger.info("successfully uploaded all files")
         return 0
     except Exception as e:
         logger.error("an unexpected error has occured: ", e)
