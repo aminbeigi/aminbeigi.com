@@ -1,3 +1,4 @@
+"""Deploy dist/ files to an AWS S3 bucket."""
 from helper import setup_logger, generate_app_start_message
 import mimetypes
 import os
@@ -14,8 +15,8 @@ DIST_DIR_NAME = "dist"
 
 
 def main() -> int:
+    logger = setup_logger()
     try:
-        logger = setup_logger()
         logger.info(generate_app_start_message())
         load_dotenv()
         s3 = boto3.client(
@@ -27,8 +28,10 @@ def main() -> int:
 
         bucket_name = os.environ["AWS_S3_BUCKET_NAME"]
         dist_dir = Path(__file__).resolve().parent.parent / DIST_DIR_NAME
+        if not dist_dir.exists():
+            raise FileNotFoundError(f"dist directory not found: {dist_dir}")
 
-        files = [object for object in dist_dir.rglob("*") if not object.is_dir()]
+        files = [path for path in dist_dir.rglob("*") if not path.is_dir()]
 
         for index, file_path in enumerate(files):
             s3_key = file_path.relative_to(dist_dir).as_posix()
@@ -41,8 +44,8 @@ def main() -> int:
         logger.info("successfully uploaded all files")
         return 0
     except Exception as e:
-        logger.error("an unexpected error has occured: ", e)
-        return -1
+        logger.error(f"an unexpected error has occurred: {e}")
+        return 1
 
 
 if __name__ == "__main__":
