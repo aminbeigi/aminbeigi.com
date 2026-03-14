@@ -5,15 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest --run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
     "generate:blogs": "cd scripts && uv sync && uv run generate_blogs.py",
     "build": "npm run generate:blogs && tsc -b && vite build",
-    "deploy": "npm run build && cd scripts && uv sync && uv run deploy_to_s3.py",
+    "deploy": "npm run test && npm run build && cd scripts && uv sync && uv run deploy_to_s3.py",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview",
-    "test": "vitest --config vitest.config.ts",
     "prepare": "husky"
   },
   "dependencies": {
