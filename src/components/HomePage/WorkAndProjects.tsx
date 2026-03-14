@@ -5,7 +5,7 @@ function WorkAndProjects() {
       role: 'platform engineer',
       time: '2025 - present',
       description:
-        'building tooling to reduces operation toil and to improve observabiltiy',
+        'building tooling to reduce operational toil, and improving observability',
     },
     {
       title: 'atlassian',
@@ -36,12 +36,6 @@ function WorkAndProjects() {
       role: 'creator and maintainer',
       description:
         'website that helps students visualize and validate truth tables',
-    },
-    {
-      title: 'job listing board',
-      url: 'https://oztechjobs.vercel.app',
-      role: 'creator and maintainer',
-      description: 'displays job listings and uses LLM to analyze queries',
     },
   ];
 
