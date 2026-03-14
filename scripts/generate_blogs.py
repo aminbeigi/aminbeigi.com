@@ -1,6 +1,8 @@
+"""Generate blogs.json from markdown files."""
+
 from pathlib import Path
 from typing import TypedDict
-from datetime import date, datetime
+from datetime import date
 import json
 import re
 import sys
@@ -48,79 +50,48 @@ def convert_title_to_slug(title: str) -> str:
     return re.sub(r"[\s\W-]+", "-", title.lower().strip()).strip("-")
 
 
-def parse_date(date_str: str) -> date:
-    """Parse ISO or display date string for sorting."""
-    try:
-        return date.fromisoformat(date_str)
-    except ValueError:
-        return datetime.strptime(date_str, "%b %d, %Y").date()
-
-
 def format_display_date(date_str: str) -> str:
-    """Format an ISO date string for display in output JSON."""
-    return parse_date(date_str).strftime("%b %d, %Y")
-
-
-def validate_paths() -> None:
-    """Validate input and output paths exist and are accessible."""
-    if not INPUT_BLOGS_MARKDOWN_DIR_PATH.exists():
-        raise FileNotFoundError(
-            f"input dir path not found: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
-        )
-
-    if not INPUT_BLOGS_MARKDOWN_DIR_PATH.is_dir():
-        raise NotADirectoryError(
-            f"input path is not a directory: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
-        )
-
-    output_parent = OUTPUT_FILE_PATH.parent
-    if not output_parent.exists():
-        raise FileNotFoundError(f"output parent directory not found: {output_parent}")
-
-    if not output_parent.is_dir():
-        raise NotADirectoryError(
-            f"output parent path is not a directory: {output_parent}"
-        )
-
-
-def fetch_markdown_files() -> list[Path]:
-    """Fetch and validate all markdown files from input directory."""
-    markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR_PATH.glob("*.md"))
-    if not markdown_files:
-        raise ValueError(f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}")
-    return markdown_files
+    """Format an ISO date string for display."""
+    return date.fromisoformat(date_str).strftime("%b %d, %Y")
 
 
 def main() -> int:
-    """Generate blogs.json from markdown files. Returns exit code."""
-
+    logger = setup_logger()
     try:
-        logger = setup_logger()
         logger.info(generate_app_start_message())
-        validate_paths()
-        markdown_files = fetch_markdown_files()
 
-        blogs_data: dict[str, BlogPost] = {}
+        if not INPUT_BLOGS_MARKDOWN_DIR_PATH.is_dir():
+            raise FileNotFoundError(
+                f"input dir not found: {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
+            )
+
+        markdown_files = list(INPUT_BLOGS_MARKDOWN_DIR_PATH.glob("*.md"))
+        if not markdown_files:
+            raise ValueError(
+                f"no markdown files found in {INPUT_BLOGS_MARKDOWN_DIR_PATH}"
+            )
+
+        blogs_data: list[tuple[str, str, BlogPost]] = []
         for file_path in markdown_files:
-            # validate file is readable
-            if not file_path.is_file():
-                raise ValueError(f"not a valid file: {file_path}")
-
             content = file_path.read_text(encoding="utf-8")
-            title, date, body = extract_frontmatter_and_body(content)
+            title, date_str, body = extract_frontmatter_and_body(content)
             slug = convert_title_to_slug(title)
-            blogs_data[slug] = BlogPost(
-                title=title, created_date=format_display_date(date), content=body
+            blogs_data.append(
+                (
+                    slug,
+                    date_str,
+                    BlogPost(
+                        title=title,
+                        created_date=format_display_date(date_str),
+                        content=body,
+                    ),
+                )
             )
+            
 
-        # sort by date (newest first)
-        sorted_blogs = dict(
-            sorted(
-                blogs_data.items(),
-                key=lambda item: parse_date(item[1]["created_date"]),
-                reverse=True,
-            )
-        )
+        # sort by date (newest first) — ISO dates sort lexicographically
+        blogs_data.sort(key=lambda item: item[1], reverse=True)
+        sorted_blogs = {slug: post for slug, _, post in blogs_data}
 
         # write output with newline at end (for Prettier compatibility)
         OUTPUT_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -133,7 +104,7 @@ def main() -> int:
         return 0
 
     except Exception as e:
-        logger.error(f"an unexpected error has occured: {e}")
+        logger.error(f"an unexpected error has occurred: {e}")
         return 1
 
 
