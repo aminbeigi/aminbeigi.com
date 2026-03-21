@@ -49,6 +49,15 @@ describe('Homepage Integration', () => {
     // Check key sections are present
     expect(screen.getByText(/random facts/i)).toBeInTheDocument();
     expect(screen.getByText(/skills/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /^work$/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /^projects$/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /^blog$/i })
+    ).toBeInTheDocument();
 
     // Check that page content is displayed (not showing error states)
     expect(screen.queryByText(/404/i)).not.toBeInTheDocument();
