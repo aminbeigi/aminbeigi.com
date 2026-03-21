@@ -58,26 +58,15 @@ function Post({ created_date, title, slug, content }: TPostProps) {
 
 function BlogIndexPage() {
   const [blogPosts, setBlogPosts] = useState<TBlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function loadPosts() {
-      setIsLoading(true);
       const posts = await getBlogPosts();
       setBlogPosts(posts);
-      setIsLoading(false);
     }
 
     loadPosts();
   }, []);
-
-  if (isLoading) {
-    return (
-      <div className="text-primary-white p-8">
-        <div>Loading...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="text-primary-white p-8">
