@@ -6,59 +6,37 @@ import {
   SiKubernetes,
   SiDatadog,
 } from 'react-icons/si';
-
-const ICON_COLOR_CLASS = 'text-gray-400';
+import { IconType } from 'react-icons';
 
 function Skills() {
-  const skills = [
-    {
-      name: 'Python',
-      icon: <FaPython className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'Linux',
-      icon: <SiLinux className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'GitHub',
-      icon: <FaGithub className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'AWS',
-      icon: <FaAws className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'Docker',
-      icon: <SiDocker className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'Kubernetes',
-      icon: <SiKubernetes className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'PostgreSQL',
-      icon: <SiPostgresql className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
-    {
-      name: 'Datadog',
-      icon: <SiDatadog className={`text-7xl ${ICON_COLOR_CLASS}`} />,
-    },
+  const skills: { name: string; icon: IconType }[] = [
+    { name: 'Python', icon: FaPython },
+    { name: 'Linux', icon: SiLinux },
+    { name: 'GitHub', icon: FaGithub },
+    { name: 'AWS', icon: FaAws },
+    { name: 'Docker', icon: SiDocker },
+    { name: 'Kubernetes', icon: SiKubernetes },
+    { name: 'PostgreSQL', icon: SiPostgresql },
+    { name: 'Datadog', icon: SiDatadog },
   ];
 
   return (
     <section>
       <h2 className="text-xl font-medium mb-4 text-primary-white">skills</h2>
-      <div className="grid grid-cols-4 gap-6 justify-items-center">
-        {skills.map((skill) => (
-          <div
-            key={skill.name}
-            className="flex justify-center items-center"
-            title={skill.name}
-            aria-label={skill.name}
-          >
-            {skill.icon}
-          </div>
-        ))}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-items-center">
+        {skills.map((skill) => {
+          const Icon = skill.icon;
+          return (
+            <div
+              key={skill.name}
+              className="flex flex-col items-center gap-2 p-4 rounded-xl border border-white/5"
+              aria-label={skill.name}
+            >
+              <Icon className="text-5xl text-gray-400" />
+              <span className="text-xs text-text-grey">{skill.name}</span>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
