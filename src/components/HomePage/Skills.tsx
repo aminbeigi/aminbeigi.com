@@ -1,10 +1,11 @@
-import { FaPython, FaAws, FaGithub } from 'react-icons/fa';
+import { FaPython, FaAws } from 'react-icons/fa';
 import {
   SiLinux,
-  SiPostgresql,
+  SiGnubash,
   SiDocker,
   SiKubernetes,
-  SiDatadog,
+  SiTerraform,
+  SiGithubactions,
 } from 'react-icons/si';
 import { IconType } from 'react-icons';
 
@@ -12,12 +13,12 @@ function Skills() {
   const skills: { name: string; icon: IconType }[] = [
     { name: 'Python', icon: FaPython },
     { name: 'Linux', icon: SiLinux },
-    { name: 'GitHub', icon: FaGithub },
+    { name: 'Bash', icon: SiGnubash },
     { name: 'AWS', icon: FaAws },
     { name: 'Docker', icon: SiDocker },
     { name: 'Kubernetes', icon: SiKubernetes },
-    { name: 'PostgreSQL', icon: SiPostgresql },
-    { name: 'Datadog', icon: SiDatadog },
+    { name: 'Terraform', icon: SiTerraform },
+    { name: 'GitHub Actions', icon: SiGithubactions },
   ];
 
   return (
