@@ -7,7 +7,7 @@ import RandomFacts from './RandomFacts';
 
 function HomePage() {
   return (
-    <main className="text-primary-white p-8 space-y-8">
+    <main className="text-primary-white p-8 space-y-12">
       <Header />
       <RandomFacts />
       <WorkAndProjects />
