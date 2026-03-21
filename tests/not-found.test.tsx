@@ -32,6 +32,15 @@ describe('Not Found Page', () => {
 
     expect(screen.getByText('404')).toBeInTheDocument();
     expect(screen.getByText('Page Not Found')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "The page you're looking for doesn't exist or has been moved."
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /back to home/i })).toHaveAttribute(
+      'href',
+      '/'
+    );
 
     expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
