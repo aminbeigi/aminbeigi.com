@@ -11,19 +11,19 @@ function RandomFacts() {
     },
     {
       icon: <GiChocolateBar className="text-accent-purple" />,
-      text: 'I fancy dark chocolate',
+      text: 'i fancy dark chocolate',
     },
     {
       icon: <FiBookOpen className="text-accent-purple" />,
-      text: 'I enjoy reading books, especially philosophy',
+      text: 'i enjoy reading books, especially philosophy',
     },
     {
       icon: <PiPersonSimpleHike className="text-accent-purple" />,
-      text: 'I like outdoors hiking',
+      text: 'i like outdoors hiking',
     },
     {
       icon: <FaMotorcycle className="text-accent-purple" />,
-      text: 'I ride motorcycles',
+      text: 'i ride motorcycles',
     },
   ];
 
