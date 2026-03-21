@@ -12,6 +12,10 @@
 
 @plugin "@tailwindcss/typography";
 
+body {
+  background-color: var(--color-background-black);
+}
+
 /* Hide scrollbar for Webkit browsers (Chrome, Safari, etc.) */
 ::-webkit-scrollbar {
   display: none;
