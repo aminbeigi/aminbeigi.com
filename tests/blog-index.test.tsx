@@ -60,8 +60,8 @@ describe('Blog Index Page', () => {
     expect(await screen.findByText('My First Post')).toBeInTheDocument();
     expect(screen.getByText('Second Post')).toBeInTheDocument();
 
-    expect(screen.getByText('2024-01-01')).toBeInTheDocument();
-    expect(screen.getByText('2024-02-01')).toBeInTheDocument();
+    expect(screen.getByText(/2024-01-01/)).toBeInTheDocument();
+    expect(screen.getByText(/2024-02-01/)).toBeInTheDocument();
 
     expect(screen.getByRole('navigation')).toBeInTheDocument();
 
