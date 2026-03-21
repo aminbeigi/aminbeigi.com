@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { getBlogPosts } from '../../blog-utils';
 import { TBlogPost } from '../../types';
 
+const MAX_DISPLAY_POSTS = 3;
+
 interface TProps {
   title: string;
   created_date: string;
@@ -58,7 +60,7 @@ function Blog() {
   return (
     <>
       <h2 className="text-xl font-medium mb-4">blog</h2>
-      {blogPosts.map((blogPost: TBlogPost) => (
+      {blogPosts.slice(0, MAX_DISPLAY_POSTS).map((blogPost: TBlogPost) => (
         <BlogPost
           key={blogPost.slug}
           title={blogPost.title}
