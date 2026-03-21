@@ -44,7 +44,10 @@ function WorkAndProjects() {
       <div>
         <h2 className="text-xl font-medium mb-4">work</h2>
         {workExperiences.map((work, index) => (
-          <div key={index} className="mb-4">
+          <div
+            key={index}
+            className="mb-3 p-4 rounded-xl border border-white/5"
+          >
             <h3 className="font-medium text-accent-purple">{work.title}</h3>
             <p className="text-text-grey italic mb-0.5">
               {work.role} ({work.time})
@@ -56,7 +59,10 @@ function WorkAndProjects() {
       <div>
         <h2 className="text-xl font-medium mb-4">projects</h2>
         {projects.map((project, index) => (
-          <div key={index} className="mb-4">
+          <div
+            key={index}
+            className="mb-3 p-4 rounded-xl border border-white/5"
+          >
             <a
               target="_blank"
               rel="noopener noreferrer"
