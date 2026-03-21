@@ -13,19 +13,15 @@ interface TProps {
 
 function BlogPost(props: TProps) {
   return (
-    <ul>
-      <li className="mb-2.5 flex flex-col">
-        <Link
-          to={`/blog/${props.slug}`}
-          className="text-blue-500 hover:underline hover:text-accent-purple"
-        >
-          {props.title.toLowerCase()}
-        </Link>
-        <span className="text-text-grey">
-          {props.created_date.toLowerCase()}
-        </span>
-      </li>
-    </ul>
+    <li className="mb-2.5 flex flex-col">
+      <Link
+        to={`/blog/${props.slug}`}
+        className="text-blue-500 hover:underline hover:text-accent-purple"
+      >
+        {props.title.toLowerCase()}
+      </Link>
+      <span className="text-text-grey">{props.created_date.toLowerCase()}</span>
+    </li>
   );
 }
 
@@ -60,14 +56,16 @@ function Blog() {
   return (
     <>
       <h2 className="text-xl font-medium mb-4">blog</h2>
-      {blogPosts.slice(0, MAX_DISPLAY_POSTS).map((blogPost: TBlogPost) => (
-        <BlogPost
-          key={blogPost.slug}
-          title={blogPost.title}
-          created_date={blogPost.created_date}
-          slug={blogPost.slug}
-        />
-      ))}
+      <ul>
+        {blogPosts.slice(0, MAX_DISPLAY_POSTS).map((blogPost: TBlogPost) => (
+          <BlogPost
+            key={blogPost.slug}
+            title={blogPost.title}
+            created_date={blogPost.created_date}
+            slug={blogPost.slug}
+          />
+        ))}
+      </ul>
       <Link
         to="/blog"
         className="text-blue-500 hover:underline hover:text-accent-purple"
