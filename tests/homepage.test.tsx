@@ -24,7 +24,7 @@ function TestApp() {
 }
 
 describe('Homepage Integration', () => {
-  it('renders the homepage without crashing and displays core content', () => {
+  it('renders the homepage without crashing and displays core content', async () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <TestApp />
@@ -58,6 +58,9 @@ describe('Homepage Integration', () => {
     expect(
       screen.getByRole('heading', { name: /^blog$/i })
     ).toBeInTheDocument();
+
+    // Blog loads posts in useEffect; wait for async state so React act() warning is avoided
+    await screen.findByRole('link', { name: /all posts/i });
 
     // Check that page content is displayed (not showing error states)
     expect(screen.queryByText(/404/i)).not.toBeInTheDocument();
