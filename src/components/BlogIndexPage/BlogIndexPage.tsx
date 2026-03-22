@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { TBlogPost } from '../../types';
-import { getBlogPosts } from '../../blog-utils';
+import { getBlogPosts, getReadingTime } from '../../blog-utils';
 
 const EXCERPT_MAX_LENGTH = 150;
-const WORDS_PER_MINUTE = 200;
-const MIN_READING_TIME = 1;
 
 interface TPostProps {
   created_date: string;
@@ -30,11 +28,6 @@ function getExcerpt(content: string): string {
     return stripped;
   }
   return stripped.slice(0, EXCERPT_MAX_LENGTH).replace(/\s+\S*$/, '') + '...';
-}
-
-function getReadingTime(content: string): number {
-  const words = content.split(/\s+/).filter(Boolean).length;
-  return Math.max(MIN_READING_TIME, Math.ceil(words / WORDS_PER_MINUTE));
 }
 
 function Post({ created_date, title, slug, content }: TPostProps) {

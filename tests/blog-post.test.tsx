@@ -53,7 +53,12 @@ describe('Blog Post Page', () => {
     );
 
     expect(await screen.findByText('My First Post')).toBeInTheDocument();
-    expect(screen.getByText('2024-01-01')).toBeInTheDocument();
+    expect(screen.getByText(/2024-01-01/)).toBeInTheDocument();
+    expect(screen.getByText(/1 min read/)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /back to blog/i })).toHaveAttribute(
+      'href',
+      '/blog'
+    );
     expect(screen.getByText('Hello world from my blog')).toBeInTheDocument();
 
     expect(screen.getByRole('navigation')).toBeInTheDocument();

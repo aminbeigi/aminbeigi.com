@@ -1,5 +1,13 @@
 import type { TBlogPost } from './types';
 
+const WORDS_PER_MINUTE = 200;
+const MIN_READING_TIME = 1;
+
+export function getReadingTime(content: string): number {
+  const words = content.split(/\s+/).filter(Boolean).length;
+  return Math.max(MIN_READING_TIME, Math.ceil(words / WORDS_PER_MINUTE));
+}
+
 interface BlogsData {
   [slug: string]: {
     title: string;

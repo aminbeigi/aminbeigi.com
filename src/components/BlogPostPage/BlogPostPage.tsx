@@ -3,8 +3,8 @@ import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 import 'highlight.js/styles/github.css';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { findPostBySlug } from '../../blog-utils';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { findPostBySlug, getReadingTime } from '../../blog-utils';
 import type { TBlogPost } from '../../types';
 
 function BlogPostPage() {
@@ -45,8 +45,23 @@ function BlogPostPage() {
 
   if (isLoading) {
     return (
-      <section className="max-w-4xl mx-auto px-4 py-8 bg-background-black text-primary-white">
-        <div>Loading...</div>
+      <section
+        className="py-4 text-primary-white"
+        aria-busy="true"
+        aria-label="Loading post"
+      >
+        <div className="animate-pulse space-y-6">
+          <div className="h-4 w-28 rounded bg-white/5" />
+          <div className="space-y-3 border-l-2 border-accent-purple/40 pl-4">
+            <div className="h-10 max-w-xl rounded bg-white/10" />
+            <div className="h-4 w-48 rounded bg-white/5" />
+          </div>
+          <div className="space-y-2 pt-2">
+            <div className="h-3 w-full rounded bg-white/5" />
+            <div className="h-3 w-full rounded bg-white/5" />
+            <div className="h-3 max-w-[90%] rounded bg-white/5" />
+          </div>
+        </div>
       </section>
     );
   }
@@ -55,15 +70,21 @@ function BlogPostPage() {
     return null;
   }
 
+  const readingTime = getReadingTime(blogPost.content);
+
   return (
-    <section
-      className="max-w-4xl mx-auto px-4 py-8 bg-background-black text-primary-white"
-      id="post-page"
-    >
-      <h1 className="text-4xl font-bold text-primary-white mb-2">
-        {blogPost.title}
-      </h1>
-      <p className="text-xl text-text-grey mb-6">{blogPost.created_date}</p>
+    <article className="blog-post py-4 text-primary-white" id="post-page">
+      <header className="mb-10 space-y-3 border-b border-white/10 pb-8 pt-8">
+        <h1 className="border-l-2 border-accent-purple pl-4 text-3xl font-semibold tracking-tight text-primary-white sm:text-4xl">
+          {blogPost.title}
+        </h1>
+        <p className="pl-[calc(0.5rem+2px)] text-sm text-text-grey">
+          {blogPost.created_date}{' '}
+          <span className="text-text-grey/60">&middot;</span> {readingTime} min
+          read
+        </p>
+      </header>
+
       <style>
         {`
           #post-page pre {
@@ -78,7 +99,14 @@ function BlogPostPage() {
       <div className="prose prose-lg prose-invert max-w-none leading-relaxed">
         <ReactMarkdown>{blogPost.content}</ReactMarkdown>
       </div>
-    </section>
+
+      <Link
+        to="/blog"
+        className="mt-12 inline-flex items-center gap-1 text-sm tracking-wide text-text-grey hover:text-accent-purple"
+      >
+        <span aria-hidden>←</span> back to blog
+      </Link>
+    </article>
   );
 }
 
