@@ -85,18 +85,7 @@ function BlogPostPage() {
         </p>
       </header>
 
-      <style>
-        {`
-          #post-page pre {
-            border: none !important;
-            background-color: #ffffffff !important;
-          }
-          #post-page code {
-            border: none !important;
-          }
-        `}
-      </style>
-      <div className="prose prose-lg prose-invert max-w-none leading-relaxed">
+      <div className="blog-post-prose prose prose-lg prose-invert max-w-none leading-relaxed prose-headings:scroll-mt-20 prose-a:text-accent-purple prose-a:no-underline hover:prose-a:underline">
         <ReactMarkdown>{blogPost.content}</ReactMarkdown>
       </div>
 

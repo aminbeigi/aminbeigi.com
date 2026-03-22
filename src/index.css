@@ -16,6 +16,20 @@ body {
   background-color: var(--color-background-black);
 }
 
+/* Blog post markdown: code blocks + inline code (scoped to post page) */
+#post-page .blog-post-prose pre {
+  border-radius: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.12) !important;
+  padding: 1rem 1.25rem;
+  background-color: #fff !important;
+}
+
+#post-page .blog-post-prose pre code {
+  border: none !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
 /* Hide scrollbar for Webkit browsers (Chrome, Safari, etc.) */
 ::-webkit-scrollbar {
   display: none;
