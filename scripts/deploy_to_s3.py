@@ -48,7 +48,8 @@ def main() -> int:
                 extra_args["ContentType"] = content_type
             s3.upload_file(str(file_path), bucket_name, s3_key, ExtraArgs=extra_args)
             logger.info(f"[{index + 1}/{len(files)}] uploaded {s3_key}")
-        logger.info("successfully uploaded all files")
+        logger.info(f"successfully uploaded {len(files)} files to s3")
+
         logger.info("starting cloudfront cache invalidation...")
         cloudfront = boto3.client(
             "cloudfront",
@@ -64,7 +65,9 @@ def main() -> int:
             },
         )
         invalidation_id = response["Invalidation"]["Id"]
-        logger.info(f"cloudfront invalidation created: {invalidation_id}")
+        logger.info(
+            f"successfully completed cloudfront cache invalidation: invalidation_id={invalidation_id}"
+        )
         return 0
     except Exception as e:
         logger.error(f"an unexpected error has occurred: {e}")
