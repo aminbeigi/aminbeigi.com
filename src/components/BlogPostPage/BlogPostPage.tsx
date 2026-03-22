@@ -9,12 +9,11 @@ import type { TBlogPost } from '../../types';
 
 function BlogPostPage() {
   const navigate = useNavigate();
-  const { id: slug } = useParams<{ id?: string }>();
+  const { slug } = useParams<{ slug?: string }>();
   const [blogPost, setBlogPost] = useState<TBlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Register only the languages you need
     hljs.registerLanguage('typescript', typescript);
   }, []);
 
@@ -27,14 +26,12 @@ function BlogPostPage() {
 
       setIsLoading(true);
       const post = await findPostBySlug(slug);
-      setBlogPost(post);
-      setIsLoading(false);
-
-      // if we don't find a blog post go to the index page
       if (!post) {
-        navigate('/blog');
+        navigate('/blog', { replace: true });
         return;
       }
+      setBlogPost(post);
+      setIsLoading(false);
     }
 
     loadPost();
@@ -42,7 +39,6 @@ function BlogPostPage() {
 
   useEffect(() => {
     if (blogPost && !isLoading) {
-      // Highlight code blocks after content is rendered
       hljs.highlightAll();
     }
   }, [blogPost, isLoading]);

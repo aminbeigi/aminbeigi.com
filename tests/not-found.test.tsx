@@ -15,7 +15,7 @@ function TestApp() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
-        <Route path="/blog/:id" element={<BlogPostPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
