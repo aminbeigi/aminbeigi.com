@@ -10,6 +10,11 @@ function NavBar() {
       label: 'blog',
       isActive: location.pathname.includes('/blog'),
     },
+    {
+      path: '/pgp-key',
+      label: 'pgp',
+      isActive: location.pathname === '/pgp-key',
+    },
   ];
 
   const getLinkClassName = (isActive: boolean) => {

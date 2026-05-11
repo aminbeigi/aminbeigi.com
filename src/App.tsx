@@ -4,6 +4,7 @@ import BlogIndexPage from './components/BlogIndexPage/BlogIndexPage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Layout from './components/Layout/Layout';
 import BlogPostPage from './components/BlogPostPage/BlogPostPage';
+import PgpPage from './components/PgpPage/PgpPage';
 
 function printCoolMessageToConsole(): void {
   const msg = '%c Hello 🕵️! Welcome to my site';
@@ -29,6 +30,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/pgp-key" element={<PgpPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
