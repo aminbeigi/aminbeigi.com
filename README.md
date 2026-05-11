@@ -53,46 +53,31 @@ npm run test
 
 ## Deployment
 
-```
-npm run build
-```
+Deployment is automated via the CI pipeline on pushes to `main`. It builds the site, uploads the `dist/` folder to S3, and invalidates the CloudFront cache.
 
-This creates an optimised production build in the `dist/` folder:
+## Directory Structure
 
 ```
-dist/
-├── index.html          # Main HTML file
-├── assets/
-│   ├── index-[hash].css  # Compiled and minified CSS
-│   └── index-[hash].js   # Compiled and minified JavaScript
-└── [other assets]      # Images, fonts, etc.
+src/
+├── assets/         # Static assets (images, PGP key, etc.)
+├── components/     # Page and UI components
+│   ├── BlogIndexPage/
+│   ├── BlogPostPage/
+│   ├── HomePage/
+│   ├── Layout/
+│   ├── NavBar/
+│   ├── NotFoundPage/
+│   └── PgpPage/
+└── test/           # Tests
+scripts/            # Python scripts for blog generation and S3 deployment
 ```
-
-Upload the `dist/` folder to your web server or hosting service.
 
 ## Built With
 
-**Core Technologies:**
-
-- [React](https://reactjs.org/) - Frontend library
-- [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [Vite](https://vitejs.dev/) - Build tool and dev server
-
-**Additional Tools:**
-
-- [React Router](https://reactrouter.com/) - Client-side routing
-- [React Markdown](https://github.com/remarkjs/react-markdown) - Markdown rendering
-- [React Icons](https://react-icons.github.io/react-icons/) - Icon library
-- [Highlight.js](https://highlightjs.org/) - Syntax highlighting
-
-**Development & Quality:**
-
-- [ESLint](https://eslint.org/) - Code linting
-- [Prettier](https://prettier.io/) - Code formatting
-- [Vitest](https://vitest.dev/) - Testing framework
-- [Husky](https://typicode.github.io/husky/) - Git hooks for automated code quality checks
-- [lint-staged](https://github.com/okonet/lint-staged) - Run linters on staged files
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
 
 ## Contributions
 
