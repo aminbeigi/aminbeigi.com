@@ -104,7 +104,9 @@ def main() -> int:
         return 0
 
     except Exception as e:
-        logger.error(f"an unexpected error has occurred: {e}")
+        # Avoid logging exception strings to reduce chances
+        # of leaking sensitive values in public CI logs.
+        logger.error(f"an unexpected error has occurred: {type(e).__name__}")
         return 1
 
 
