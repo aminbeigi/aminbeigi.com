@@ -37,18 +37,19 @@ def main() -> int:
 
         files = [path for path in dist_dir.rglob("*") if not path.is_dir()]
 
-        logger.info(
-            f"starting s3 upload: bucket={bucket_name}, file_count={len(files)}..."
-        )
-        for index, file_path in enumerate(files):
+        logger.info(f"starting s3 upload: file_count={len(files)}...")
+        upload_start = time.time()
+        for file_path in files:
             s3_key = file_path.relative_to(dist_dir).as_posix()
             content_type, _ = mimetypes.guess_type(str(file_path))
             extra_args = {}
             if content_type:
                 extra_args["ContentType"] = content_type
             s3.upload_file(str(file_path), bucket_name, s3_key, ExtraArgs=extra_args)
-            logger.info(f"[{index + 1}/{len(files)}] uploaded {s3_key}")
-        logger.info(f"successfully uploaded {len(files)} files to s3")
+        upload_elapsed_s = time.time() - upload_start
+        logger.info(
+            f"successfully uploaded {len(files)} files to s3 in {upload_elapsed_s:.2f}s"
+        )
 
         logger.info("starting cloudfront cache invalidation...")
         cloudfront = boto3.client(
@@ -64,13 +65,13 @@ def main() -> int:
                 "CallerReference": str(int(time.time())),
             },
         )
-        invalidation_id = response["Invalidation"]["Id"]
-        logger.info(
-            f"successfully completed cloudfront cache invalidation: invalidation_id={invalidation_id}"
-        )
+        _ = response["Invalidation"]["Id"]
+        logger.info("successfully completed cloudfront cache invalidation")
         return 0
     except Exception as e:
-        logger.error(f"an unexpected error has occurred: {e}")
+        # Avoid logging exception strings to reduce chances
+        # of leaking sensitive values in public CI logs.
+        logger.error(f"deploy failed with exception type: {type(e).__name__}")
         return 1
 
 
