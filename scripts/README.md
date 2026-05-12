@@ -21,6 +21,7 @@ Requires the following environment variables (loaded from `.env` locally):
 
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION`
 - `AWS_S3_BUCKET_NAME`
 - `CLOUDFRONT_DISTRIBUTION_ID`
 

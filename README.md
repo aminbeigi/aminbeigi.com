@@ -13,12 +13,11 @@
 
 ## Description
 
-This repository hosts the source code for my personal website and blog ->
-http://aminbeigi.com.
+This repository hosts the source code for my personal website and blog https://aminbeigi.com.
 
 ## ️Requirements
 
-- Node.js (v24.12.0+)
+- Node.js (v20.19+)
 - npm (v11.6.2+)
 - Git (for version control and precommit hooks)
 
@@ -69,7 +68,7 @@ src/
 │   ├── NotFoundPage/
 │   └── PgpPage/
 └── test/           # Tests
-scripts/            # Python scripts for blog generation and S3 deployment
+scripts/            # Python scripts for S3 deployment
 ```
 
 ## Built With
