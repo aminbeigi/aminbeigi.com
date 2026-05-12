@@ -2,69 +2,31 @@ import ReactMarkdown from 'react-markdown';
 import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 import 'highlight.js/styles/github.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { findPostBySlug, getReadingTime } from '../../blog-utils';
-import type { TBlogPost } from '../../types';
 
 function BlogPostPage() {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug?: string }>();
-  const [blogPost, setBlogPost] = useState<TBlogPost | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     hljs.registerLanguage('typescript', typescript);
   }, []);
 
-  useEffect(() => {
-    async function loadPost() {
-      if (!slug) {
-        navigate('/blog');
-        return;
-      }
+  const blogPost = slug ? findPostBySlug(slug) : null;
 
-      setIsLoading(true);
-      const post = await findPostBySlug(slug);
-      if (!post) {
-        navigate('/blog', { replace: true });
-        return;
-      }
-      setBlogPost(post);
-      setIsLoading(false);
+  useEffect(() => {
+    if (!slug || !blogPost) {
+      navigate('/blog', { replace: true });
     }
-
-    loadPost();
-  }, [slug, navigate]);
+  }, [slug, blogPost, navigate]);
 
   useEffect(() => {
-    if (blogPost && !isLoading) {
+    if (blogPost) {
       hljs.highlightAll();
     }
-  }, [blogPost, isLoading]);
-
-  if (isLoading) {
-    return (
-      <section
-        className="py-4 text-primary-white"
-        aria-busy="true"
-        aria-label="Loading post"
-      >
-        <div className="animate-pulse space-y-6">
-          <div className="h-4 w-28 rounded bg-white/5" />
-          <div className="space-y-3 border-l-2 border-accent-purple/40 pl-4">
-            <div className="h-10 max-w-xl rounded bg-white/10" />
-            <div className="h-4 w-48 rounded bg-white/5" />
-          </div>
-          <div className="space-y-2 pt-2">
-            <div className="h-3 w-full rounded bg-white/5" />
-            <div className="h-3 w-full rounded bg-white/5" />
-            <div className="h-3 max-w-[90%] rounded bg-white/5" />
-          </div>
-        </div>
-      </section>
-    );
-  }
+  }, [blogPost]);
 
   if (!blogPost) {
     return null;

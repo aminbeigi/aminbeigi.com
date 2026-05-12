@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { TBlogPost } from '../../types';
 import { getBlogPosts, getReadingTime } from '../../blog-utils';
 
@@ -50,16 +49,7 @@ function Post({ created_date, title, slug, content }: TPostProps) {
 }
 
 function BlogIndexPage() {
-  const [blogPosts, setBlogPosts] = useState<TBlogPost[]>([]);
-
-  useEffect(() => {
-    async function loadPosts() {
-      const posts = await getBlogPosts();
-      setBlogPosts(posts);
-    }
-
-    loadPosts();
-  }, []);
+  const blogPosts = getBlogPosts();
 
   return (
     <div className="text-primary-white p-8">
