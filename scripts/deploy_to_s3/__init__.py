@@ -12,9 +12,8 @@ import boto3
 from dotenv import load_dotenv
 
 
-CLIENT_TYPE = "s3"
-REGION_NAME = "ap-southeast-2"
-DIST_DIR_NAME = "dist"
+_CLIENT_TYPE = "s3"
+_DIST_DIR_NAME = "dist"
 
 
 def _setup_logger() -> logging.Logger:
@@ -36,7 +35,7 @@ def _generate_app_start_message() -> str:
 
 def _get_dist_dir(_base: Path | None = None) -> Path:
     base = _base or Path(__file__).resolve().parent.parent.parent
-    dist_dir = base / DIST_DIR_NAME
+    dist_dir = base / _DIST_DIR_NAME
     if not dist_dir.exists():
         raise FileNotFoundError(f"dist directory not found: {dist_dir}")
     return dist_dir
@@ -80,14 +79,14 @@ def main() -> int:
         aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"]
         aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"]
         credentials = dict[str, str](
-            region_name=REGION_NAME,
+            region_name=os.environ["AWS_REGION"],
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
         )
 
         dist_dir = _get_dist_dir()
         _upload_to_s3(
-            boto3.client(CLIENT_TYPE, **credentials),
+            boto3.client(_CLIENT_TYPE, **credentials),
             os.environ["AWS_S3_BUCKET_NAME"],
             dist_dir,
             logger,

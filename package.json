@@ -8,7 +8,6 @@
     "test": "vitest --run --config vitest.config.ts",
     "test:watch": "vitest --config vitest.config.ts",
     "build": "tsc -b && vite build",
-    "deploy": "cd scripts && uv sync && uv run deploy-to-s3",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write src",
