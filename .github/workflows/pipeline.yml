@@ -29,28 +29,8 @@ jobs:
       - name: Format check (Prettier)
         run: npm run format:check
 
-  python-lint-format-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Lint (ruff)
-        working-directory: scripts
-        run: uv run --group dev ruff check .
-
-      - name: Format check (ruff)
-        working-directory: scripts
-        run: uv run --group dev ruff format --check .
-
-      - name: Test (pytest)
-        working-directory: scripts
-        run: uv run --group dev pytest tests/ -v
-
   javascript-test-and-build:
-    needs: [javascript-lint-and-format, python-lint-format-and-test]
+    needs: javascript-lint-and-format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -75,8 +55,37 @@ jobs:
           name: dist
           path: dist/
 
-  deploy-to-s3:
-    needs: javascript-test-and-build
+  python-lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Lint (ruff)
+        working-directory: scripts
+        run: uv run --group dev ruff check .
+
+      - name: Format check (ruff)
+        working-directory: scripts
+        run: uv run --group dev ruff format --check .
+
+  python-test:
+    needs: python-lint-and-format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Test (pytest)
+        working-directory: scripts
+        run: uv run --group dev pytest tests/ -v
+
+  deploy:
+    needs: [javascript-test-and-build, python-test]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
