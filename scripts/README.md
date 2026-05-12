@@ -10,7 +10,7 @@ Automation to deploy the site to S3.
 ## Setup
 
 ```
-uv sync
+uv sync --group dev
 ```
 
 ## deploy_to_s3
@@ -26,4 +26,19 @@ Requires the following environment variables (loaded from `.env` locally):
 
 ```
 uv run python -m deploy_to_s3
+```
+
+## Development
+
+Lint and format:
+
+```
+uv run --group dev ruff check .
+uv run --group dev ruff format .
+```
+
+Test:
+
+```
+uv run --group dev pytest tests/ -v
 ```

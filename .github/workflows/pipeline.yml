@@ -40,6 +40,10 @@ jobs:
         working-directory: scripts
         run: uv run --group dev ruff format --check .
 
+      - name: Test (pytest)
+        working-directory: scripts
+        run: uv run --group dev pytest tests/ -v
+
 
   build:
     needs: lint

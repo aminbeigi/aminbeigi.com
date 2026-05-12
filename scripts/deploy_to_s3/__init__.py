@@ -34,8 +34,9 @@ def _generate_app_start_message() -> str:
     return out
 
 
-def _get_dist_dir() -> Path:
-    dist_dir = Path(__file__).resolve().parent.parent.parent / DIST_DIR_NAME
+def _get_dist_dir(_base: Path | None = None) -> Path:
+    base = _base or Path(__file__).resolve().parent.parent.parent
+    dist_dir = base / DIST_DIR_NAME
     if not dist_dir.exists():
         raise FileNotFoundError(f"dist directory not found: {dist_dir}")
     return dist_dir
