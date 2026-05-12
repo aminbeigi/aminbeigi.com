@@ -8,80 +8,92 @@ export function getReadingTime(content: string): number {
   return Math.max(MIN_READING_TIME, Math.ceil(words / WORDS_PER_MINUTE));
 }
 
-interface BlogsData {
-  [slug: string]: {
-    title: string;
-    created_date: string;
-    content: string;
+function parseFrontmatter(raw: string): {
+  title: string;
+  isoDate: string;
+  content: string;
+} {
+  const match = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(raw);
+  if (!match) {
+    throw new Error('No frontmatter found in markdown file');
+  }
+
+  const fields: Record<string, string> = {};
+  for (const line of match[1].split('\n')) {
+    const colon = line.indexOf(':');
+    if (colon === -1) {
+      continue;
+    }
+    fields[line.slice(0, colon).trim()] = line
+      .slice(colon + 1)
+      .trim()
+      .replace(/^['"]|['"]$/g, '');
+  }
+
+  if (!fields.title) {
+    throw new Error("Missing 'title' in frontmatter");
+  }
+  if (!fields.date) {
+    throw new Error("Missing 'date' in frontmatter");
+  }
+
+  return {
+    title: fields.title,
+    isoDate: fields.date,
+    content: match[2].trim(),
   };
 }
 
-let blogsCache: BlogsData | null = null;
-let blogPostsCache: TBlogPost[] | null = null;
-
-export async function loadBlogs(): Promise<BlogsData> {
-  if (blogsCache) return blogsCache;
-
-  try {
-    const response = await fetch('/blogs.json');
-    if (!response.ok) {
-      throw new Error(`Failed to load blogs: ${response.status}`);
-    }
-    blogsCache = await response.json();
-    return blogsCache!;
-  } catch (error) {
-    console.error('Error loading blogs:', error);
-    blogsCache = {};
-    return blogsCache;
-  }
+function titleToSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[\s\W-]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
-export async function getBlogPosts(): Promise<TBlogPost[]> {
-  if (blogPostsCache) return blogPostsCache;
+function formatDisplayDate(isoDate: string): string {
+  return new Date(isoDate).toLocaleDateString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+  });
+}
 
-  const blogsData = await loadBlogs();
+const rawFiles = import.meta.glob('../data/blogs/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
 
-  blogPostsCache = Object.entries(blogsData).map(([slug, post], index) => ({
+interface ParsedEntry {
+  title: string;
+  isoDate: string;
+  content: string;
+  slug: string;
+}
+
+const allPosts: TBlogPost[] = (() => {
+  const entries: ParsedEntry[] = Object.values(rawFiles).map((raw) => {
+    const { title, isoDate, content } = parseFrontmatter(raw);
+    return { title, isoDate, content, slug: titleToSlug(title) };
+  });
+
+  entries.sort((a, b) => b.isoDate.localeCompare(a.isoDate));
+
+  return entries.map(({ title, isoDate, content, slug }, index) => ({
     id: index,
-    title: post.title,
-    created_date: post.created_date,
-    content: post.content,
+    title,
+    created_date: formatDisplayDate(isoDate),
+    content,
     slug,
   }));
+})();
 
-  return blogPostsCache;
+export function getBlogPosts(): TBlogPost[] {
+  return allPosts;
 }
 
-export async function findPostBySlug(slug: string): Promise<TBlogPost | null> {
-  const blogsData = await loadBlogs();
-  const post = blogsData[slug];
-
-  if (!post) return null;
-
-  return {
-    id: 0, // ID not needed for single post
-    title: post.title,
-    created_date: post.created_date,
-    content: post.content,
-    slug,
-  };
-}
-
-// Legacy sync functions for backward compatibility (will be empty until blogs load)
-export function getBlogPostsSync(): TBlogPost[] {
-  return blogPostsCache || [];
-}
-
-export function findPostBySlugSync(slug: string): TBlogPost | null {
-  if (!blogsCache) return null;
-  const post = blogsCache[slug];
-  if (!post) return null;
-
-  return {
-    id: 0,
-    title: post.title,
-    created_date: post.created_date,
-    content: post.content,
-    slug,
-  };
+export function findPostBySlug(slug: string): TBlogPost | null {
+  return allPosts.find((p) => p.slug === slug) ?? null;
 }

@@ -1,6 +1,6 @@
 # Scripts
 
-Python scripts used by the build and deploy pipeline.
+Python scripts used by the deploy pipeline.
 
 ## Requirements
 
@@ -14,14 +14,6 @@ uv sync
 ```
 
 ## Scripts
-
-### `generate-blogs` (`generate_blogs.py`)
-
-Reads markdown files from `data/blogs/`, parses frontmatter, and writes `public/blogs.json` (sorted newest first). Runs automatically as part of `npm run build`.
-
-```
-uv run generate-blogs
-```
 
 ### `deploy-to-s3` (`deploy_to_s3.py`)
 
