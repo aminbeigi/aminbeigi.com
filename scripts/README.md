@@ -15,15 +15,15 @@ uv sync
 
 ## Scripts
 
-### `generate_blogs.py`
+### `generate-blogs` (`generate_blogs.py`)
 
 Reads markdown files from `data/blogs/`, parses frontmatter, and writes `public/blogs.json` (sorted newest first). Runs automatically as part of `npm run build`.
 
 ```
-uv run generate_blogs.py
+uv run generate-blogs
 ```
 
-### `deploy_to_s3.py`
+### `deploy-to-s3` (`deploy_to_s3.py`)
 
 Uploads `dist/` to S3 and invalidates the CloudFront distribution. Runs automatically in CI on pushes to `main`.
 
@@ -35,7 +35,7 @@ Requires the following environment variables (loaded from `.env` locally):
 - `CLOUDFRONT_DISTRIBUTION_ID`
 
 ```
-uv run deploy_to_s3.py
+uv run deploy-to-s3
 ```
 
 ### `helper.py`
