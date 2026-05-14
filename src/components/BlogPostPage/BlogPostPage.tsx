@@ -35,8 +35,8 @@ function BlogPostPage() {
   const readingTime = getReadingTime(blogPost.content);
 
   return (
-    <article className="blog-post py-4 text-primary-white" id="post-page">
-      <header className="mb-10 space-y-3 border-b border-white/10 pb-8 pt-8">
+    <article className="blog-post px-8 pb-8 text-primary-white" id="post-page">
+      <header className="mb-10 space-y-3 border-b border-white/10 pb-8">
         <h1 className="border-l-2 border-accent-purple pl-4 text-3xl font-semibold tracking-tight text-primary-white sm:text-4xl">
           {blogPost.title}
         </h1>

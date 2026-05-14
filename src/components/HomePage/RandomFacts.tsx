@@ -15,7 +15,7 @@ function RandomFacts() {
     },
     {
       icon: <FiBookOpen className="text-accent-purple" />,
-      text: 'i enjoy reading books, especially philosophy',
+      text: 'i enjoy reading books',
     },
     {
       icon: <PiPersonSimpleHike className="text-accent-purple" />,

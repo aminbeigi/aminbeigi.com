@@ -52,7 +52,7 @@ function BlogIndexPage() {
   const blogPosts = getBlogPosts();
 
   return (
-    <div className="text-primary-white p-8">
+    <div className="text-primary-white px-8 pb-8">
       <div>
         {blogPosts.map((blogPost: TBlogPost) => (
           <Post
