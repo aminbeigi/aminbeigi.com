@@ -19,7 +19,7 @@ function NavBar() {
 
   const getLinkClassName = (isActive: boolean) => {
     const baseClasses =
-      'hover:underline decoration-2 underline-offset-4 transition-colors';
+      'hover:underline decoration-2 underline-offset-7 transition-colors';
     const activeClasses =
       'text-accent-purple underline decoration-2 underline-offset-4';
     const inactiveClasses = 'text-text-grey hover:text-accent-purple';
