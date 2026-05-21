@@ -41,7 +41,7 @@ describe('Homepage Integration', () => {
     // Check social links are rendered
     expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /linkedin/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /mail/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /^mail$/i })).toBeInTheDocument();
 
     // Check navigation is present
     expect(screen.getByRole('navigation')).toBeInTheDocument();
