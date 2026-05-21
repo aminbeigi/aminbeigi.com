@@ -31,6 +31,13 @@ function WorkAndProjects() {
         'my personal website, professional profile and programming blog',
     },
     {
+      title: 'mailpulse',
+      url: 'https://github.com/aminbeigi/mailpulse',
+      role: 'creator and maintainer',
+      description:
+        'rest api that whether a domain are set up so incoming mail can be delivered',
+    },
+    {
       title: 'truth table generator',
       url: 'https://truth.aminbeigi.com',
       role: 'creator and maintainer',
