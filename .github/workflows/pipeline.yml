@@ -55,44 +55,12 @@ jobs:
           name: dist
           path: dist/
 
-  python-lint-and-format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Lint (ruff)
-        working-directory: scripts
-        run: uv run --group dev ruff check .
-
-      - name: Format check (ruff)
-        working-directory: scripts
-        run: uv run --group dev ruff format --check .
-
-  python-test:
-    needs: python-lint-and-format
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-
-      - name: Test (pytest)
-        working-directory: scripts
-        run: uv run --group dev pytest tests/ -v
-
   deploy:
-    needs: [javascript-test-and-build, python-test]
+    needs: javascript-test-and-build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
 
       - name: Download dist artifact
         uses: actions/download-artifact@v4
@@ -100,12 +68,11 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Deploy
-        working-directory: scripts
-        run: uv run python -m deploy_to_s3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
-          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+      - uses: aminbeigi/deploy-to-s3@main
+        with:
+          dist-path: dist
+          aws-region: ${{ secrets.AWS_REGION }}
+          s3-bucket: ${{ secrets.AWS_S3_BUCKET_NAME }}
+          cloudfront-distribution-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
