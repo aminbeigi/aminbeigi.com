@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import hljs from 'highlight.js/lib/core';
 import typescript from 'highlight.js/lib/languages/typescript';
+import python from 'highlight.js/lib/languages/python';
 import 'highlight.js/styles/github.css';
 import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -12,6 +13,7 @@ function BlogPostPage() {
 
   useEffect(() => {
     hljs.registerLanguage('typescript', typescript);
+    hljs.registerLanguage('python', python);
   }, []);
 
   const blogPost = slug ? findPostBySlug(slug) : null;
