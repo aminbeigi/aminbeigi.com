@@ -32,10 +32,10 @@ function WorkAndProjects() {
     },
     {
       title: 'mailpulse',
-      url: 'https://github.com/aminbeigi/mailpulse',
+      url: 'https://mailpulse.aminbeigi.com/api/v1/docs',
       role: 'creator and maintainer',
       description:
-        'rest api that whether a domain are set up so incoming mail can be delivered',
+        'rest api that checks whether a domain is set up so incoming mail can be delivered',
     },
     {
       title: 'truth table generator',
