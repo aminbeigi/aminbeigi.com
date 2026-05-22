@@ -15,11 +15,15 @@
 
 This repository hosts the source code for my personal website and blog https://aminbeigi.com.
 
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [Deployment](#deployment) for notes on how to deploy the project on a live system.
+
 ## ️Requirements
 
 - Node.js (v20.19+)
 - npm (v11.6.2+)
-- Git (for version control and precommit hooks)
+- Git - for version control and precommit hooks
 
 ## Installation and Setup
 
@@ -50,26 +54,37 @@ Your app should now be running at `http://localhost:5173`.
 npm run test
 ```
 
+## Lint and Format
+
+Lint with ESLint:
+
+```
+npm run lint
+npm run lint:fix
+```
+
+Format with Prettier:
+
+```
+npm run format
+npm run format:check
+```
+
+`lint:fix` and `format` apply changes locally. `format:check` and `lint` (without `:fix`) only report issues—the same checks run in CI.
+
 ## Deployment
 
-Deployment is automated via the CI pipeline on pushes to `main`. It builds the site, uploads the `dist/` folder to S3, and invalidates the CloudFront cache.
+On pushes to `main`, the [CI pipeline](.github/workflows/pipeline.yml) builds the site and deploys it with the [deploy-to-s3](https://github.com/aminbeigi/deploy-to-s3) GitHub Action (`aminbeigi/deploy-to-s3@main`). The action uploads `dist/` to S3 and invalidates the CloudFront distribution.
 
-## Directory Structure
+Configure these repository secrets (Settings → Secrets and variables → Actions):
 
-```
-src/
-├── assets/         # Static assets (images, PGP key, etc.)
-├── components/     # Page and UI components
-│   ├── BlogIndexPage/
-│   ├── BlogPostPage/
-│   ├── HomePage/
-│   ├── Layout/
-│   ├── NavBar/
-│   ├── NotFoundPage/
-│   └── PgpPage/
-└── test/           # Tests
-scripts/            # Python scripts for S3 deployment
-```
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION`
+- `AWS_S3_BUCKET_NAME`
+- `CLOUDFRONT_DISTRIBUTION_ID`
+
+For local deploys and action development, see the [deploy-to-s3](https://github.com/aminbeigi/deploy-to-s3) repository.
 
 ## Built With
 
