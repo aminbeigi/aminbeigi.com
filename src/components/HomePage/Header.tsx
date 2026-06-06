@@ -24,9 +24,9 @@ function Header() {
           software engineer
         </span>{' '}
         with a focus on building and managing scalable and reliable systems.
-        Experienced in applying software engineering principles to
-        infrastructure. I enjoy automating anything and everything. I have a
-        strong interest in computer networking and linux.
+        experienced in applying software engineering principles to
+        infrastructure. i enjoy automating anything and everything. i have a
+        strong interest in computer networking.
       </p>
     </header>
   );
