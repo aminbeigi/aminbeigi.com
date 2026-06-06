@@ -3,7 +3,13 @@ title: Functional Programming with TypeScript
 date: 2024-09-16
 ---
 
-Functional programming (FP) focuses on creating code that is predictable, easy to understand and resilient to bugs. At its core, FP revolves around key principles such as immutability, pure functions and higher-order functions. In this article, we'll delve into these fundamental concepts and illustrate how we can refactor our code to embrace a FP style.
+I usually write code the way I was taught through books and guides: procedurally, meaning I wrote software as a sequence of step-by-step instructions that change data over time.
+
+Then I discovered functional programming (FP), and my god is it beautiful. To write code in this paradigm felt clean and elegant. I wanted to understand it properly.
+
+FP focuses on writing code that is predictable, easy to understand and less prone to bugs. At its core are ideas like immutability, pure functions and higher-order functions.
+
+In this blog, we'll look at these concepts and refactor some code into a more functional style.
 
 ## Immutability
 
@@ -52,7 +58,7 @@ result; // 25
 
 ## Higher-Order Functions
 
-Higher-order functions are your best friends in FP. They either take other functions as arguments or return functions. For example, map is a higher-order function that applies a given function to each element of an array:
+Higher-order functions are your best friends in FP. They either take other functions as arguments or return functions. For example, `map` is a higher-order function that applies a given function to each element of an array:
 
 ```ts
 const addEmoji = (str: string): string => `${str} 😊`;
@@ -172,4 +178,6 @@ In this refactored code, we use function composition to chain our operations in 
 
 ## Final Reflection
 
-Adopting functional programming principles in TypeScript can sharpen code reliability and maintainability. Ultimately, creativity remains your most important tool - use these principles to guide your design and let creativity drive innovative solutions.
+FP is pretty awesome. I seldom see it used in practice. I wonder why? Maybe because it feels less intuitive at first and asks developers to think differently.
+
+Still, I think adopting FP principles in TypeScript can improve code quality. Ultimately, creativity remains your most important tool. Use these principles to guide your design, but let creativity shape the final solution.
