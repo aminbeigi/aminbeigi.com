@@ -24,11 +24,9 @@ if first_byte == 0x45:
     print("looks like an IPv4 packet")
 ```
 
-The walrus version is shorter but notice how it makes the code slightly harder to read. That is the trade-off we are concerned about.
+Compared to a regular assignment, the walrus version is shorter but notice how it makes the code slightly harder to read. That is the trade-off we are concerned about.
 
-## Why You Should Not Use it
-
-Compared to a regular assignment, there is no performance improvement. The walrus operator is designed for convenience. But the problem is readability.
+## Final Reflection
 
 I would much rather have an extra line or two if it makes the code easier to read. Python is popular because it is usually clear. You can often understand Python code without being a Python expert. The walrus operator works against that when it is used badly. Or really when it is used at all.
 
